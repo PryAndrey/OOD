@@ -1,0 +1,1 @@
+rectangle 10 10 12 12 FE0FA0FF FFFFFFFF
