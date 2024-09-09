@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MuteQuack
+#define MuteQuack
 
 class CMuteQuack : public IQuackBehavior
 {
@@ -7,3 +8,5 @@ class CMuteQuack : public IQuackBehavior
 		cout << ". . ." << endl;
 	};
 };
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef NoDance
+#define NoDance
 
 class CNoDance : public IDanceBehavior
 {
@@ -7,3 +8,5 @@ class CNoDance : public IDanceBehavior
 		cout << ". . ." << endl;
 	};
 };
+
+#endif

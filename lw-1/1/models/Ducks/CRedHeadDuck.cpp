@@ -1,4 +1,5 @@
-#pragma once
+#ifndef RedheadDuck
+#define RedheadDuck
 
 #include "CRedHeadDuck.h"
 #include "../Dance/CMinuetDance.cpp"
@@ -16,3 +17,5 @@ CRedheadDuck::CRedheadDuck()
 	m_flyBehavior = std::make_unique<CFlyWithWings>();
 	m_danceBehavior = std::make_unique<CMinuetDance>();
 }
+
+#endif

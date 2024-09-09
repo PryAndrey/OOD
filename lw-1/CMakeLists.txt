@@ -14,6 +14,10 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 add_executable(1 1/main.cpp)
+add_executable(
+        DanceTests
+        1/google_test/test.cpp)
+target_link_libraries(DanceTests gtest_main)
 
 add_executable(3 3/main.cpp)
 

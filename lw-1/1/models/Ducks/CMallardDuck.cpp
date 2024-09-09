@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MallardDuck
+#define MallardDuck
 
 #include "CMallardDuck.h"
 #include "../Dance/CWaltzDance.cpp"
@@ -16,3 +17,5 @@ CMallardDuck::CMallardDuck()
 	m_flyBehavior = std::make_unique<CFlyWithWings>();
 	m_danceBehavior = std::make_unique<CWaltzDance>();
 }
+
+#endif

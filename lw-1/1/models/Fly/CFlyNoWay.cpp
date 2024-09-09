@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FlyNoWay
+#define FlyNoWay
 
 class CFlyNoWay : public IFlyBehavior
 {
@@ -6,3 +7,5 @@ class CFlyNoWay : public IFlyBehavior
 		cout << ". . ." << endl;
 	};
 };
+
+#endif

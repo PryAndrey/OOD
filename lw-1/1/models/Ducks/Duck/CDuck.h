@@ -1,4 +1,5 @@
-#pragma once
+#ifndef H_Duck
+#define H_Duck
 
 #include "../../Dance/IDanceBehavior.h"
 #include "../../Fly/IFlyBehavior.h"
@@ -20,3 +21,5 @@ protected:
 	std::unique_ptr<IFlyBehavior> m_flyBehavior;
 	std::unique_ptr<IDanceBehavior> m_danceBehavior;
 };
+
+#endif

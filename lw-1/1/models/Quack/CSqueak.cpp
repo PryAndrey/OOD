@@ -1,4 +1,5 @@
-#pragma once
+#ifndef Squeak
+#define Squeak
 
 class CSqueak : public IQuackBehavior
 {
@@ -6,3 +7,5 @@ class CSqueak : public IQuackBehavior
 		cout << "Pip-Pip!" << endl;
 	};
 };
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef RubberDuck
+#define RubberDuck
 
 #include "CRubberDuck.h"
 #include "../Dance/CNoDance.cpp"
@@ -16,3 +17,5 @@ CRubberDuck::CRubberDuck()
 	m_flyBehavior = std::make_unique<CFlyNoWay>();
 	m_danceBehavior = std::make_unique<CNoDance>();
 }
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FlyWithWings
+#define FlyWithWings
 
 class CFlyWithWings : public IFlyBehavior
 {
@@ -11,3 +12,5 @@ public:
 private:
 	int m_flightCount = 0;
 };
+
+#endif

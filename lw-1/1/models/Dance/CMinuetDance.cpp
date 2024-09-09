@@ -1,4 +1,5 @@
-#pragma once
+#ifndef Minuet
+#define Minuet
 
 class CMinuetDance : public IDanceBehavior
 {
@@ -6,3 +7,5 @@ class CMinuetDance : public IDanceBehavior
 		cout << "Dance Minuet" << endl;
 	};
 };
+
+#endif

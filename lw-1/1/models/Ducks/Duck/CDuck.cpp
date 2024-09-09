@@ -1,4 +1,5 @@
-#pragma once
+#ifndef Duck
+#define Duck
 
 #include "CDuck.h"
 using namespace std;
@@ -27,3 +28,5 @@ void CDuck::SetOtherWings(std::unique_ptr<IFlyBehavior> newFly)
 {
 	m_flyBehavior = std::move(newFly);
 }
+
+#endif
