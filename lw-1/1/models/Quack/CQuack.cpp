@@ -3,6 +3,6 @@
 class CQuack : public IQuackBehavior
 {
 	void Quack() override{
-		cout << "Kra-Kra!" << endl;
+		cout << "Quack!" << endl;
 	};
 };

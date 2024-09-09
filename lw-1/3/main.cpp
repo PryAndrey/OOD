@@ -1,47 +1,62 @@
-#include "CDucks.cpp"
+#include "models/Ducks/CDecoyDuck.h"
+#include "models/Ducks/CMallardDuck.h"
+#include "models/Ducks/CRedHeadDuck.h"
+#include "models/Ducks/CRubberDuck.h"
+#include "models/Fly.cpp"
+#include "models/Quack.cpp"
+#include "models/Dance.cpp"
 
 using namespace std;
 
-
-DanceBehavior CreateDanceBehavior(const std::string& danceName)
+void DrawDuck(CDuck const& duck)
 {
-	int danceCount = 0;
-	return [danceName, danceCount]() mutable {
-		std::cout << "Dancing " << danceName << "! Dance #" << ++danceCount << std::endl;
-	};
+	duck.Display();
 }
 
-FlyBehavior CreateFlyBehavior(const std::string& flyName)
+void PlayWithDuck(CDuck& duck)
 {
-	return [flyName, flightCount = 0]() mutable {
-		std::cout << "Flying " << flyName << "! Flight #" << ++flightCount << std::endl;
-	};
-}
-
-FlyBehavior CreateQuackBehavior(const std::string& quackName)
-{
-	return [quackName, flightCount = 0]() mutable {
-		std::cout << "Flying " << quackName << "! Flight #" << ++flightCount << std::endl;
-	};
+	DrawDuck(duck);
+	duck.PerformQuack();
+	duck.PerformFly();
+	duck.PerformDance();
+	std::cout << std::endl;
 }
 
 int main() {
-	Duck mallard;
-	mallard.SetDanceBehavior(CreateDanceBehavior("Waltz"));
-	mallard.SetFlyBehavior(CreateFlyBehavior("with wings"));
-	mallard.PerformDance(); // Вывод: Dancing Waltz! Dance #1
-	mallard.PerformFly(); // Вывод: Flying with wings! Flight #1
-	mallard.PerformDance(); // Вывод: Dancing Waltz! Dance #2
-	mallard.PerformFly(); // Вывод: Flying with wings! Flight #2
+	CMallardDuck mallard;
+	PlayWithDuck(mallard);
+	mallard.PerformFly();
+	mallard.PerformFly();
+	mallard.PerformFly();
+	mallard.SetFlyBehavior(CreateFlyNoWay());
+	mallard.PerformFly();
+	cout << "-----------------" << endl;
 
-	Duck redhead;
-	redhead.SetDanceBehavior(CreateDanceBehavior("Minuet"));
-	redhead.SetFlyBehavior(CreateFlyBehavior("with wings"));
-	redhead.PerformDance(); // Вывод: Dancing Minuet! Dance #1
-	redhead.PerformFly(); // Вывод: Flying with wings! Flight #1
+	CRedheadDuck redhead;
+	PlayWithDuck(redhead);
+	redhead.PerformFly();
+	redhead.PerformFly();
+	redhead.PerformFly();
+	redhead.SetFlyBehavior(CreateFlyNoWay());
+	redhead.PerformFly();
+	cout << "-----------------" << endl;
 
-	redhead.SetFlyBehavior(CreateFlyBehavior("no way"));
-	redhead.PerformFly(); // Вывод: Flying no way! Flight #1
+	CDecoyDuck decoyDuck;
+	PlayWithDuck(decoyDuck);
+	decoyDuck.PerformFly();
+	decoyDuck.PerformFly();
+	decoyDuck.PerformFly();
+	decoyDuck.SetFlyBehavior(CreateFlyNoWay());
+	decoyDuck.PerformFly();
+	cout << "-----------------" << endl;
+
+	CRubberDuck rubberDuck;
+	PlayWithDuck(rubberDuck);
+	rubberDuck.PerformFly();
+	rubberDuck.PerformFly();
+	rubberDuck.PerformFly();
+	rubberDuck.SetFlyBehavior(CreateFlyNoWay());
+	rubberDuck.PerformFly();
 
 	return 0;
 }
