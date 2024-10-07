@@ -4,19 +4,38 @@
 #include "CDuck.h"
 using namespace std;
 
-void CDuck::PerformQuack()
+CDuck::CDuck(std::unique_ptr<IFlyBehavior> flyBehavior,
+	std::unique_ptr<IQuackBehavior> quackBehavior,
+	std::unique_ptr<IDanceBehavior> danceBehavior)
+	: m_flyBehavior(std::move(flyBehavior)),
+	m_quackBehavior(std::move(quackBehavior)),
+	m_danceBehavior(std::move(danceBehavior))
 {
-	m_quackBehavior->Quack();
 }
 
+void CDuck::PerformQuack()
+{
+	if (m_quackBehavior)
+	{
+		m_quackBehavior->Quack();
+	}
+}
+
+///  Принимать в конструкторе приватные поля - done
 void CDuck::PerformFly()
 {
-	m_flyBehavior->Fly();
+	if (m_flyBehavior)
+	{
+		m_flyBehavior->Fly();
+	}
 }
 
 void CDuck::PerformDance()
 {
-	m_danceBehavior->Dance();
+	if (m_danceBehavior)
+	{
+		m_danceBehavior->Dance();
+	}
 }
 
 void CDuck::Swim()
@@ -24,9 +43,18 @@ void CDuck::Swim()
 	cout << "Swim" << endl;
 }
 
-void CDuck::SetOtherWings(std::unique_ptr<IFlyBehavior> newFly)
+///  Переименовать функцию - done
+void CDuck::SetFlyBehavior(std::unique_ptr<IFlyBehavior> flyBehavior)
 {
-	m_flyBehavior = std::move(newFly);
+	m_flyBehavior = std::move(flyBehavior);
+}
+void CDuck::SetQuackBehavior(std::unique_ptr<IQuackBehavior> quackBehavior)
+{
+	m_quackBehavior = std::move(quackBehavior);
+}
+void CDuck::SetDanceBehavior(std::unique_ptr<IDanceBehavior> danceBehavior)
+{
+	m_danceBehavior = std::move(danceBehavior);
 }
 
 #endif

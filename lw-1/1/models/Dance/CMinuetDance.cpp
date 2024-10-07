@@ -3,7 +3,7 @@
 
 class CMinuetDance : public IDanceBehavior
 {
-	void Dance() override{
+	void Dance() override {
 		cout << "Dance Minuet" << endl;
 	};
 };

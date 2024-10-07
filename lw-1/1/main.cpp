@@ -20,9 +20,9 @@ int main()
 	rhDuck.PerformFly();
 	rhDuck.PerformFly();
 	rhDuck.PerformFly();
-	rhDuck.SetOtherWings(std::make_unique<CFlyNoWay>());
+	rhDuck.SetFlyBehavior(std::make_unique<CFlyNoWay>());
 	rhDuck.PerformFly();
-	rhDuck.SetOtherWings(std::make_unique<CFlyWithWings>());
+	rhDuck.SetFlyBehavior(std::make_unique<CFlyWithWings>());
 	rhDuck.PerformFly();
 	rhDuck.PerformFly();
 	rhDuck.PerformFly();

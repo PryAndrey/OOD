@@ -12,10 +12,8 @@ void CRubberDuck::Display()
 }
 
 CRubberDuck::CRubberDuck()
+	: CDuck(std::make_unique<CFlyNoWay>(), std::make_unique<CSqueak>(), std::make_unique<CNoDance>())
 {
-	m_quackBehavior = std::make_unique<CSqueak>();
-	m_flyBehavior = std::make_unique<CFlyNoWay>();
-	m_danceBehavior = std::make_unique<CNoDance>();
 }
 
 #endif

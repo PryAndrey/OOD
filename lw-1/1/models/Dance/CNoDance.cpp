@@ -3,8 +3,7 @@
 
 class CNoDance : public IDanceBehavior
 {
-	void Dance() override
-	{
+	void Dance() override {
 		cout << ". . ." << endl;
 	};
 };

@@ -3,8 +3,8 @@
 
 #include "CDecoyDuck.h"
 #include "../Dance/CNoDance.cpp"
-#include "../Quack/CMuteQuack.cpp"
 #include "../Fly/CFlyNoWay.cpp"
+#include "../Quack/CMuteQuack.cpp"
 
 void CDecoyDuck::Display()
 {
@@ -12,10 +12,8 @@ void CDecoyDuck::Display()
 }
 
 CDecoyDuck::CDecoyDuck()
+	: CDuck(std::make_unique<CFlyNoWay>(), std::make_unique<CMuteQuack>(), std::make_unique<CNoDance>())
 {
-	m_quackBehavior = std::make_unique<CMuteQuack>();
-	m_flyBehavior = std::make_unique<CFlyNoWay>();
-	m_danceBehavior = std::make_unique<CNoDance>();
 }
 
 #endif

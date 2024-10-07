@@ -1,0 +1,110 @@
+classDiagram
+    class IShapeType {
+        <<interface>>
+        +Draw(Canvas: ICanvas, color: Color)
+        +Move(dx: double, dy: double)
+	    +GetStringType() string
+	    +GetStringParams() string
+    }
+    class EllipseShapeType {
+        +Draw(Canvas: ICanvas, color: Color)
+        +Move(dx: double, dy: double)
+	    +GetStringType() string
+	    +GetStringParams() string
+        -m_x, m_y, m_r: double;
+    }
+    class RectangleShapeType {
+        +Draw(Canvas: ICanvas, color: Color)
+        +Move(dx: double, dy: double)
+	    +GetStringType() string
+	    +GetStringParams() string
+        -m_x, m_y, m_width, m_height: double;
+    }
+    class TriangleShapeType {
+        +Draw(Canvas: ICanvas, color: Color)
+        +Move(dx: double, dy: double)
+	    +GetStringType() string
+	    +GetStringParams() string
+        -m_x1, m_y1, m_x2, m_y2, m_x3, m_y3: double;
+    }
+    class LineShapeType {
+        +Draw(Canvas: ICanvas, color: Color)
+        +Move(dx: double, dy: double)
+	    +GetStringType() string
+	    +GetStringParams() string
+        -m_x1, m_y1, m_x2, m_y2: double;
+    }
+    class TextShapeType {
+        +Draw(Canvas: ICanvas, color: Color)
+        +Move(dx: double, dy: double)
+	    +GetStringType() string
+	    +GetStringParams() string
+        -m_x, m_y: double;
+        -fontSize: double;
+        -text: &string;
+    }
+
+    class ICanvas {
+        +SetColor(Color c)
+        +MoveTo(double x, double y)
+        +LineTo(double x, double y)
+        +DrawRect(double x, double y, double width, double height)
+        +DrawEllipse(double cx, double cy, double rx, double ry)
+        +DrawText(double left, double top, double fontSize, const std::string& text)
+        +Fill()
+    }
+
+    class Canvas {
+        +SetColor(Color c)
+        +MoveTo(double x, double y)
+        +LineTo(double x, double y)
+        +DrawRect(double x, double y, double width, double height)
+        +DrawEllipse(double cx, double cy, double rx, double ry)
+        +DrawText(double left, double top, double fontSize, const std::string& text)
+        +Fill()
+    }
+
+    class Picture {
+        +DrawPicture()
+        +List()
+        +MovePicture(dx: double, dy: double)
+        +MoveShape(id: string, dx: double, dy: double)
+        +DrawShape(id: string)
+        +DeleteShape(id: string)
+        +ChangeColor(id: string, color: Color)
+        +ChangeShape(id: string, newShapeType: &IShapeType)
+        +AddShape(id: string, color: Color, shapeType: &IShapeType)
+        +GetShapeById(id: string) string;
+        -m_shapes: map<string, unique_ptr<CShape>>;
+    }
+
+    class Shape {
+        +Shape(shapeType: IShapeType)
+        +Draw(canvas: Canvas)
+        +Move(dx: double, dy: double)
+        +GetColor(): Color
+        +GetId(): string
+        +GetType(): string
+        +GetStringParams(): string
+        +SetColor(newColor: Color)
+        +SetNewShapeType(newShapeType: unique_ptr<IShapeType>)
+        -m_id: string
+        -m_shapeType: IShapeType
+        -m_color: Color
+    }
+
+
+    IShapeType <|.. EllipseShapeType
+    IShapeType <|.. RectangleShapeType
+    IShapeType <|.. TriangleShapeType
+    IShapeType <|.. LineShapeType
+    IShapeType <|.. TextShapeType
+
+    ICanvas <|-- Canvas
+
+    Canvas <.. Picture : use
+    Canvas <.. Shape : use
+
+    Shape *-- IShapeType
+    Shape --* Picture
+    актуализировать

@@ -3,7 +3,7 @@
 
 class CWaltzDance : public IDanceBehavior
 {
-	void Dance() override{
+	void Dance() override {
 		cout << "Dance waltz" << endl;
 	};
 };

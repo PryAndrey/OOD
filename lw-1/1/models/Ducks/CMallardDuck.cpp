@@ -12,10 +12,8 @@ void CMallardDuck::Display()
 }
 
 CMallardDuck::CMallardDuck()
+	: CDuck(std::make_unique<CFlyWithWings>(), std::make_unique<CQuack>(), std::make_unique<CWaltzDance>())
 {
-	m_quackBehavior = std::make_unique<CQuack>();
-	m_flyBehavior = std::make_unique<CFlyWithWings>();
-	m_danceBehavior = std::make_unique<CWaltzDance>();
 }
 
 #endif

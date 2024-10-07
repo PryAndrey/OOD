@@ -1,51 +1,73 @@
+#include "../models/Dance/IDanceBehavior.h"
 #include "../models/Ducks/CDecoyDuck.cpp"
 #include "../models/Ducks/CMallardDuck.cpp"
 #include "../models/Ducks/CRedHeadDuck.cpp"
 #include "../models/Ducks/CRubberDuck.cpp"
-#include <fstream>
+#include <gmock/gmock.h>
 #include <gtest/gtest.h>
-#include <iostream>
-#include <sstream>
-#include <string>
+#include <memory>
 
-using namespace std;
+using ::testing::_;
+using ::testing::AnyNumber;
+using ::testing::Invoke;
+
+class MockWaltzDance : public IDanceBehavior
+{
+public:
+	MOCK_METHOD(void, Dance, (), (override));
+};
+class MockMinuetDance : public IDanceBehavior
+{
+public:
+	MOCK_METHOD(void, Dance, (), (override));
+};
+
+class MockNoDance : public IDanceBehavior
+{
+public:
+	MOCK_METHOD(void, Dance, (), (override));
+};
 
 TEST(dance_test, dance_test)
 {
-	ostringstream outputStream;
-	streambuf* originalCoutBuffer = cout.rdbuf();
-	cout.rdbuf(outputStream.rdbuf());
+	auto mockWaltzDance = std::make_unique<MockWaltzDance>();
+	auto mockMinuetDance = std::make_unique<MockMinuetDance>();
+	auto mockNoDance1 = std::make_unique<MockNoDance>();
+	auto mockNoDance2 = std::make_unique<MockNoDance>();
+
+	EXPECT_CALL(*mockWaltzDance, Dance())
+		.Times(1)
+		.WillOnce(Invoke([]() { std::cout << "Dance waltz" << std::endl; }));
+	EXPECT_CALL(*mockMinuetDance, Dance())
+		.Times(1)
+		.WillOnce(Invoke([]() { std::cout << "Dance Minuet" << std::endl; }));
+	EXPECT_CALL(*mockNoDance1, Dance())
+		.Times(1)
+		.WillOnce(Invoke([]() { std::cout << ". . ." << std::endl; }));
+	EXPECT_CALL(*mockNoDance2, Dance())
+		.Times(1)
+		.WillOnce(Invoke([]() { std::cout << ". . ." << std::endl; }));
 
 	CMallardDuck mDuck;
-	mDuck.PerformDance();
-	EXPECT_EQ(outputStream.str(), "Dance waltz\n");
-	outputStream.str("");
-	outputStream.clear();
+	mDuck.SetDanceBehavior(std::move(mockWaltzDance));
 
 	CRedheadDuck rhDuck;
-	rhDuck.PerformDance();
-	EXPECT_EQ(outputStream.str(), "Dance Minuet\n");
-	outputStream.str("");
-	outputStream.clear();
+	rhDuck.SetDanceBehavior(std::move(mockMinuetDance));
 
 	CDecoyDuck dDuck;
-	dDuck.PerformDance();
-	EXPECT_EQ(outputStream.str(), ". . .\n");
-	outputStream.str("");
-	outputStream.clear();
-	
-	CRubberDuck rDuck;
-	rDuck.PerformDance();
-	EXPECT_EQ(outputStream.str(), ". . .\n");
-	outputStream.str("");
-	outputStream.clear();
+	dDuck.SetDanceBehavior(std::move(mockNoDance1));
 
-	cout.rdbuf(originalCoutBuffer);
+	CRubberDuck rDuck;
+	rDuck.SetDanceBehavior(std::move(mockNoDance2));
+
+	mDuck.PerformDance();
+	rhDuck.PerformDance();
+	dDuck.PerformDance();
+	rDuck.PerformDance();
 }
 
-GTEST_API_ int main(int argc, char** argv)
+int main(int argc, char** argv)
 {
-	cout << "Running tests";
-	testing::InitGoogleTest(&argc, argv);
+	::testing::InitGoogleMock(&argc, argv);
 	return RUN_ALL_TESTS();
 }

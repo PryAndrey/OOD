@@ -1,0 +1,89 @@
+classDiagram
+    часть1 <--* целое1 : Композиция(Часть_целого)
+    часть2 --o целое2 : Агрегация(Не владеет, но использует)
+    часть3 ..> целое3 : Зависимость(только на время действия функции)
+    потомок --|> родитель : Наследование
+    реализация ..|> интерфейс : Интерфейс
+
+https://mermaid.live
+
+classDiagram
+    FlyBehavior <--* CDuck
+    CFlyNoWay ..|> FlyBehavior
+    CFlyWithWings ..|> FlyBehavior
+
+    QuackBehavior <--* CDuck
+    CMuteQuack ..|> QuackBehavior
+    CQuack ..|> QuackBehavior
+    CSqueak ..|> QuackBehavior
+
+    DanceBehavior <--* CDuck
+    CNoDance ..|> DanceBehavior
+    CWaltzDance ..|> DanceBehavior
+    CMinuetDance ..|> DanceBehavior
+
+    CMallardDuck --|> CDuck
+    CRedHeadDuck --|> CDuck
+    CRubberDuck --|> CDuck
+    CDecoyDuck --|> CDuck
+
+
+https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000
+
+@startuml
+
+interface FlyBehavior
+interface QuackBehavior
+interface DanceBehavior
+
+class CDuck {
+}
+
+class CFlyNoWay {
+}
+class CFlyWithWings {
+}
+
+class CMuteQuack {
+}
+class CQuack {
+}
+class CSqueak {
+}
+
+class CNoDance {
+}
+class CWaltzDance {
+}
+class CMinuetDance {
+}
+
+class CMallardDuck {
+}
+class CRedHeadDuck {
+}
+class CRubberDuck {
+}
+class CDecoyDuck {
+}
+
+CDuck <|-- CMallardDuck
+CDuck <|-- CRedHeadDuck
+CDuck <|-- CRubberDuck
+CDuck <|-- CDecoyDuck
+
+FlyBehavior <|..* CDuck
+QuackBehavior <|..* CDuck
+DanceBehavior <|..* CDuck
+
+CFlyNoWay --|> FlyBehavior
+CFlyWithWings --|> FlyBehavior
+
+CMuteQuack --|> QuackBehavior
+CQuack --|> QuackBehavior
+CSqueak --|> QuackBehavior
+
+CNoDance --|> DanceBehavior
+CWaltzDance --|> DanceBehavior
+CMinuetDance --|> DanceBehavior
+@enduml

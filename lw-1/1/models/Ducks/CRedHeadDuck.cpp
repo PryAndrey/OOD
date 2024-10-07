@@ -12,10 +12,8 @@ void CRedheadDuck::Display()
 }
 
 CRedheadDuck::CRedheadDuck()
+	: CDuck(std::make_unique<CFlyWithWings>(), std::make_unique<CQuack>(), std::make_unique<CMinuetDance>())
 {
-	m_quackBehavior = std::make_unique<CQuack>();
-	m_flyBehavior = std::make_unique<CFlyWithWings>();
-	m_danceBehavior = std::make_unique<CMinuetDance>();
 }
 
 #endif

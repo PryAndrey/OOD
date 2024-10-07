@@ -1,243 +1,204 @@
-#include "../CShapeService.h"
-#include "fakeit.hpp"
-#include "mock/CShapeServiceMock.h"
+#include "../../4/models/Shapes/ShapesStrategy/IShapeType.h"
+#include "../models/Picture/CPicture.cpp"
+#include "../models/Shapes/ShapesStrategy/Circle/CCircleShapeType.cpp"
+#include "../models/Shapes/ShapesStrategy/Line/CLineShapeType.cpp"
+#include "../models/Shapes/ShapesStrategy/Rectangle/CRectangleShapeType.cpp"
+#include "../models/Shapes/ShapesStrategy/Text/CTextShapeType.cpp"
+#include "../models/Shapes/ShapesStrategy/Triangle/CTriangleShapeType.cpp"
+#include "ICanvas.h"
 #include <fstream>
+#include <gmock/gmock.h>
 #include <gtest/gtest.h>
-using namespace std;
 
-TEST(empty_test, empty_test)
+class MockCanvas : public gfx::ICanvas
 {
-	ifstream file("../../4/google_test/testFiles/testE.txt");
-	if (!file.is_open())
-	{
-		cout << "Can`t open inputFile" << endl;
-	}
-	CShapeService shapeService;
-	shapeService.ReadShapes(file);
-	ISolidShape* areaShape = shapeService.GetMaxAreaShape();
-	EXPECT_TRUE(areaShape == nullptr);
+public:
+	MOCK_METHOD(void, SetColor, (const std::string& color), (override));
+	MOCK_METHOD(void, MoveTo, (double x, double y), (override));
+	MOCK_METHOD(void, LineTo, (double x, double y), (override));
+	MOCK_METHOD(void, DrawEllipse, (double cx, double cy, double rx, double ry), (override));
+	MOCK_METHOD(void, DrawText, (double left, double top, double fontSize, const std::string& text), (override));
+	MOCK_METHOD(void, Fill, (), (override));
+};
+
+TEST(PictureTest, AddShapeTest)
+{
+	shapes::CPicture picture;
+
+	std::unique_ptr<shapes::IShapeType> rect(new shapes::CRectangleShapeType(100, 100, 200, 200));
+	std::unique_ptr<shapes::CShape> sh1 = std::make_unique<shapes::CShape>("sh1", "f0f0f0", std::move(rect));
+
+	picture.AddShape("sh1", std::move(sh1));
+
+	EXPECT_EQ(picture.GetShapeById("sh1"), "rectangle sh1 #f0f0f0 100 100 200 200");
 }
 
-TEST(create_test, create_rectangle_test)
+TEST(PictureTest, ChangeShapeTest)
 {
-	ifstream file("../../4/google_test/testFiles/test1.txt");
-	if (!file.is_open())
-	{
-		cout << "Can`t open inputFile" << endl;
-	}
-	CShapeService shapeService;
-	shapeService.ReadShapes(file);
-	ISolidShape* areaShape = shapeService.GetMaxAreaShape();
-	string expectedString = "Rectangle: \n"
-							"TopLeftPoint: (X: 10.00, Y: 10.00)\n"
-							"Width: 12.00\n"
-							"Height: 12.00\n"
-							"OutlineColor: fe0fa0ff\n"
-							"FillColor: ffffffff\n"
-							"Area: 144.00\n"
-							"Perimeter: 48.00\n";
-	EXPECT_EQ(areaShape->ToString(), expectedString);
+	shapes::CPicture picture;
+
+	std::unique_ptr<shapes::IShapeType> rect(new shapes::CRectangleShapeType(100, 100, 200, 200));
+	std::unique_ptr<shapes::CShape> sh1 = std::make_unique<shapes::CShape>("sh1", "f0f0f0", std::move(rect));
+
+	picture.AddShape("sh1", std::move(sh1));
+
+	std::unique_ptr<shapes::IShapeType> newShapeType(new shapes::CCircleShapeType(100, 100, 200));
+	picture.ChangeShape("sh1", std::move(newShapeType));
+
+	EXPECT_EQ(picture.GetShapeById("sh1"), "circle sh1 #f0f0f0 100 100 200");
 }
 
-TEST(create_test, create_triangle_test)
+TEST(PictureTest, MoveShapeTest)
 {
-	ifstream file("../../4/google_test/testFiles/test2.txt");
-	if (!file.is_open())
-	{
-		cout << "Can`t open inputFile" << endl;
-	}
-	CShapeService shapeService;
-	shapeService.ReadShapes(file);
-	ISolidShape* areaShape = shapeService.GetMaxAreaShape();
-	string expectedString = "Triangle: \n"
-							"Point1: (X: 10.00, Y: 10.00)\n"
-							"Point2: (X: 10.00, Y: 20.00)\n"
-							"Point3: (X: 20.00, Y: 10.00)\n"
-							"OutlineColor: fe0fa0ff\n"
-							"FillColor: ffffffff\n"
-							"Area: 50.00\n"
-							"Perimeter: 34.14\n";
-	EXPECT_EQ(areaShape->ToString(), expectedString);
+	shapes::CPicture picture;
+
+	std::unique_ptr<shapes::IShapeType> rect(new shapes::CRectangleShapeType(100, 100, 200, 200));
+	std::unique_ptr<shapes::CShape> sh1 = std::make_unique<shapes::CShape>("sh1", "f0f0f0", std::move(rect));
+
+	picture.AddShape("sh1", std::move(sh1));
+
+	picture.MoveShape("sh1", 100, 100);
+
+	EXPECT_EQ(picture.GetShapeById("sh1"), "rectangle sh1 #f0f0f0 200 200 200 200");
 }
 
-TEST(create_test, create_circle_test)
+TEST(PictureTest, MovePictureTest)
 {
-	ifstream file("../../4/google_test/testFiles/test3.txt");
-	if (!file.is_open())
-	{
-		cout << "Can`t open inputFile" << endl;
-	}
-	CShapeService shapeService;
-	shapeService.ReadShapes(file);
-	ISolidShape* areaShape = shapeService.GetMaxAreaShape();
-	string expectedString = "Circle: \n"
-							"Point: (X: 10.00, Y: 10.00)\n"
-							"Radius: 5.00\n"
-							"OutlineColor: fe0fa0ff\n"
-							"FillColor: ffffffff\n"
-							"Area: 78.54\n"
-							"Perimeter: 31.42\n";
-	EXPECT_EQ(areaShape->ToString(), expectedString);
+	shapes::CPicture picture;
+
+	std::unique_ptr<shapes::IShapeType> rect(new shapes::CRectangleShapeType(100, 100, 200, 200));
+	std::unique_ptr<shapes::CShape> sh1 = std::make_unique<shapes::CShape>("sh1", "f0f0f0", std::move(rect));
+	picture.AddShape("sh1", std::move(sh1));
+	std::unique_ptr<shapes::IShapeType> circle(new shapes::CCircleShapeType(100, 100, 200));
+	std::unique_ptr<shapes::CShape> sh2 = std::make_unique<shapes::CShape>("sh2", "f0f0f0", std::move(circle));
+	picture.AddShape("sh2", std::move(sh2));
+
+	picture.MovePicture(100, 100);
+
+	EXPECT_EQ(picture.GetShapeById("sh1"), "rectangle sh1 #f0f0f0 200 200 200 200");
+	EXPECT_EQ(picture.GetShapeById("sh2"), "circle sh2 #f0f0f0 200 200 200");
 }
 
-TEST(min_perimeter_test, min_perimeter_rectangle_test)
+TEST(PictureTest, DeleteShapeTest)
 {
-	ifstream file("../../4/google_test/testFiles/testP1.txt");
-	if (!file.is_open())
-	{
-		cout << "Can`t open inputFile" << endl;
-	}
-	CShapeService shapeService;
-	shapeService.ReadShapes(file);
-	ISolidShape* perimeterShape = shapeService.GetMinPerimeterShape();
-	string expectedString = "Rectangle: \n"
-							"TopLeftPoint: (X: 10.00, Y: 10.00)\n"
-							"Width: 5.00\n"
-							"Height: 5.00\n"
-							"OutlineColor: fe0fa0ff\n"
-							"FillColor: ffffffff\n"
-							"Area: 25.00\n"
-							"Perimeter: 20.00\n";
-	EXPECT_EQ(perimeterShape->ToString(), expectedString);
+	shapes::CPicture picture;
+
+	std::unique_ptr<shapes::IShapeType> rect(new shapes::CRectangleShapeType(100, 100, 200, 200));
+	std::unique_ptr<shapes::CShape> sh1 = std::make_unique<shapes::CShape>("sh1", "f0f0f0", std::move(rect));
+	picture.AddShape("sh1", std::move(sh1));
+
+	picture.DeleteShape("sh1");
+	EXPECT_THROW(picture.GetShapeById("sh1"), std::invalid_argument);
 }
 
-TEST(min_perimeter_test, min_perimeter_triangle_test)
+TEST(PictureTest, ChangeColorTest)
 {
-	ifstream file("../../4/google_test/testFiles/testP2.txt");
-	if (!file.is_open())
-	{
-		cout << "Can`t open inputFile" << endl;
-	}
-	CShapeService shapeService;
-	shapeService.ReadShapes(file);
-	ISolidShape* perimeterShape = shapeService.GetMinPerimeterShape();
-	string expectedString = "Triangle: \n"
-							"Point1: (X: 0.00, Y: 0.00)\n"
-							"Point2: (X: 0.00, Y: 10.00)\n"
-							"Point3: (X: 10.00, Y: 0.00)\n"
-							"OutlineColor: fe0fa0ff\n"
-							"FillColor: ffffffff\n"
-							"Area: 50.00\n"
-							"Perimeter: 34.14\n";
-	EXPECT_EQ(perimeterShape->ToString(), expectedString);
+	shapes::CPicture picture;
+
+	std::unique_ptr<shapes::IShapeType> rect(new shapes::CRectangleShapeType(100, 100, 200, 200));
+	std::unique_ptr<shapes::CShape> sh1 = std::make_unique<shapes::CShape>("sh1", "f0f0f0", std::move(rect));
+	picture.AddShape("sh1", std::move(sh1));
+
+	picture.ChangeColor("sh1", "000000");
+
+	EXPECT_EQ(picture.GetShapeById("sh1"), "rectangle sh1 #000000 100 100 200 200");
 }
 
-TEST(min_perimeter_test, min_perimeter_circle_test)
+TEST(ShapeTest, RectangleTest)
 {
-	ifstream file("../../4/google_test/testFiles/testP3.txt");
-	if (!file.is_open())
-	{
-		cout << "Can`t open inputFile" << endl;
-	}
-	CShapeService shapeService;
-	shapeService.ReadShapes(file);
-	ISolidShape* perimeterShape = shapeService.GetMinPerimeterShape();
-	string expectedString = "Circle: \n"
-							"Point: (X: 10.00, Y: 10.00)\n"
-							"Radius: 5.00\n"
-							"OutlineColor: fe0fa0ff\n"
-							"FillColor: ffffffff\n"
-							"Area: 78.54\n"
-							"Perimeter: 31.42\n";
-	EXPECT_EQ(perimeterShape->ToString(), expectedString);
+	MockCanvas mockCanvas;
+	std::unique_ptr<shapes::IShapeType> rect(new shapes::CRectangleShapeType(100, 100, 200, 200));
+	std::unique_ptr<shapes::CShape> sh1 = std::make_unique<shapes::CShape>("sh1", "f0f0f0", std::move(rect));
+
+	EXPECT_CALL(mockCanvas, SetColor("f0f0f0"));
+	EXPECT_CALL(mockCanvas, MoveTo(100, 100));
+	EXPECT_CALL(mockCanvas, LineTo(300, 100));
+	EXPECT_CALL(mockCanvas, LineTo(300, 300));
+	EXPECT_CALL(mockCanvas, LineTo(100, 300));
+	EXPECT_CALL(mockCanvas, LineTo(100, 100));
+	EXPECT_CALL(mockCanvas, Fill());
+
+	sh1->Draw(mockCanvas);
+	sh1->Move(100, -50);
+
+	EXPECT_EQ(sh1->GetStringParams(), "200 50 200 200");
+
+	EXPECT_THROW(new shapes::CRectangleShapeType(100, 100, -100, -100), std::invalid_argument);
 }
 
-TEST(max_area_test, max_area_rectangle_test)
+TEST(ShapeTest, CircleTest)
 {
-	ifstream file("../../4/google_test/testFiles/testA1.txt");
-	if (!file.is_open())
-	{
-		cout << "Can`t open inputFile" << endl;
-	}
-	CShapeService shapeService;
-	shapeService.ReadShapes(file);
-	ISolidShape* areaShape = shapeService.GetMaxAreaShape();
-	string expectedString = "Rectangle: \n"
-							"TopLeftPoint: (X: 10.00, Y: 10.00)\n"
-							"Width: 30.00\n"
-							"Height: 30.00\n"
-							"OutlineColor: fe0fa0ff\n"
-							"FillColor: ffffffff\n"
-							"Area: 900.00\n"
-							"Perimeter: 120.00\n";
-	EXPECT_EQ(areaShape->ToString(), expectedString);
+	MockCanvas mockCanvas;
+	std::unique_ptr<shapes::IShapeType> circle(new shapes::CCircleShapeType(100, 100, 200));
+	std::unique_ptr<shapes::CShape> sh1 = std::make_unique<shapes::CShape>("sh1", "f0f0f0", std::move(circle));
+
+	EXPECT_CALL(mockCanvas, SetColor("f0f0f0"));
+	EXPECT_CALL(mockCanvas, DrawEllipse(100, 100, 200, 200));
+
+	sh1->Draw(mockCanvas);
+	sh1->Move(100, -50);
+
+	EXPECT_EQ(sh1->GetStringParams(), "200 50 200");
+
+	EXPECT_THROW(new shapes::CCircleShapeType(100, 100, -100), std::invalid_argument);
 }
 
-TEST(max_area_test, max_area_triangle_test)
+TEST(ShapeTest, TriangleTest)
 {
-	ifstream file("../../4/google_test/testFiles/testA2.txt");
-	if (!file.is_open())
-	{
-		cout << "Can`t open inputFile" << endl;
-	}
-	CShapeService shapeService;
-	shapeService.ReadShapes(file);
-	ISolidShape* areaShape = shapeService.GetMaxAreaShape();
-	string expectedString = "Triangle: \n"
-							"Point1: (X: 0.00, Y: 0.00)\n"
-							"Point2: (X: 0.00, Y: 50.00)\n"
-							"Point3: (X: 50.00, Y: 0.00)\n"
-							"OutlineColor: fe0fa0ff\n"
-							"FillColor: ffffffff\n"
-							"Area: 1250.00\n"
-							"Perimeter: 170.71\n";
-	EXPECT_EQ(areaShape->ToString(), expectedString);
+	MockCanvas mockCanvas;
+	std::unique_ptr<shapes::IShapeType> triangle(new shapes::CTriangleShapeType(100, 100, 200, 100, 100, 200));
+	std::unique_ptr<shapes::CShape> sh1 = std::make_unique<shapes::CShape>("sh1", "f0f0f0", std::move(triangle));
+
+	EXPECT_CALL(mockCanvas, SetColor("f0f0f0"));
+	EXPECT_CALL(mockCanvas, MoveTo(100, 100));
+	EXPECT_CALL(mockCanvas, LineTo(200, 100));
+	EXPECT_CALL(mockCanvas, LineTo(100, 200));
+	EXPECT_CALL(mockCanvas, LineTo(100, 100));
+	EXPECT_CALL(mockCanvas, Fill());
+
+	sh1->Draw(mockCanvas);
+	sh1->Move(100, -50);
+
+	EXPECT_EQ(sh1->GetStringParams(), "200 50 300 50 200 150");
 }
 
-TEST(max_area_test, max_area_circle_test)
+TEST(ShapeTest, LineTest)
 {
-	ifstream file("../../4/google_test/testFiles/testA3.txt");
-	if (!file.is_open())
-	{
-		cout << "Can`t open inputFile" << endl;
-	}
-	CShapeService shapeService;
-	shapeService.ReadShapes(file);
-	ISolidShape* areaShape = shapeService.GetMaxAreaShape();
-	string expectedString = "Circle: \n"
-							"Point: (X: 10.00, Y: 10.00)\n"
-							"Radius: 25.00\n"
-							"OutlineColor: fe0fa0ff\n"
-							"FillColor: ffffffff\n"
-							"Area: 1963.50\n"
-							"Perimeter: 157.08\n";
-	EXPECT_EQ(areaShape->ToString(), expectedString);
+	MockCanvas mockCanvas;
+	std::unique_ptr<shapes::IShapeType> triangle(new shapes::CLineShapeType(100, 100, 200, 200));
+	std::unique_ptr<shapes::CShape> sh1 = std::make_unique<shapes::CShape>("sh1", "f0f0f0", std::move(triangle));
+
+	EXPECT_CALL(mockCanvas, SetColor("f0f0f0"));
+	EXPECT_CALL(mockCanvas, MoveTo(100, 100));
+	EXPECT_CALL(mockCanvas, LineTo(200, 200));
+	EXPECT_CALL(mockCanvas, Fill());
+
+	sh1->Draw(mockCanvas);
+	sh1->Move(100, -50);
+
+	EXPECT_EQ(sh1->GetStringParams(), "200 50 300 150");
 }
 
-TEST(render_test, render_test)
+TEST(ShapeTest, TextTest)
 {
-	ifstream file("../../4/google_test/testFiles/testR.txt");
-	if (!file.is_open())
-	{
-		cout << "Can`t open inputFile" << endl;
-	}
-	CShapeServiceMock shapeService;
-	shapeService.ReadShapes(file);
+	MockCanvas mockCanvas;
+	std::unique_ptr<shapes::IShapeType> triangle(new shapes::CTextShapeType(100, 100, 20, "Hello world"));
+	std::unique_ptr<shapes::CShape> sh1 = std::make_unique<shapes::CShape>("sh1", "f0f0f0", std::move(triangle));
 
-	ofstream temp("../../4/google_test/temp.txt");
-	shapeService.RenderShapes(temp);
-	temp.close();
+	EXPECT_CALL(mockCanvas, SetColor("f0f0f0"));
+	EXPECT_CALL(mockCanvas, DrawText(100, 100, 20, "Hello world"));
 
-	ifstream logs("../../4/google_test/temp.txt");
-	ifstream tempResult("../../4/google_test/tempResult1.txt");
-	if (!logs.is_open() || !tempResult.is_open())
-	{
-		cout << "Can`t open file" << endl;
-		return;
-	}
-	string line1, line2;
-	while (logs.eof())
-	{
-		getline(logs, line1);
-		getline(tempResult, line2);
-		EXPECT_EQ(line1, line2);
-	}
+	sh1->Draw(mockCanvas);
+	sh1->Move(100, -50);
+
+	EXPECT_EQ(sh1->GetStringParams(), "200 50 20 Hello world");
+
+	EXPECT_THROW(new shapes::CTextShapeType(100, 100, -20, "Hello world"), std::invalid_argument);
 }
-//test double output
 
 GTEST_API_ int main(int argc, char** argv)
 {
-	cout << "Running tests";
+	std::cout << "Running tests";
 	testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();
 }

@@ -1,0 +1,7 @@
+<svg width="900" height="900" xmlns="http://www.w3.org/2000/svg">
+<polygon points="400,400 500,400 500,500 400,500 400,400 " fill="#f010f0" stroke="#f010f0" />
+<polygon points="400,400 500,400 450,300 400,400 " fill="#f010f0" stroke="#f010f0" />
+<polygon points="200,400 200,600 " fill="#f010f0" stroke="#f010f0" />
+<ellipse cx="200" cy="350" rx="100" ry="100" fill="#f010f0" />
+<text x="200" y="350" font-size="50" fill="#f010f0" style="font-weight:bold;">hello world</text>
+</svg>

@@ -34,7 +34,5 @@
 # My gitignore
 /lib/
 /ood-master/
-/lw-1/4/cmake-build-debug
-/lw-1/4/cmake-build-debug/
-/lw-1/cmake-build-debug
-/lw-1/.idea
+**/cmake-build-debug/
+**/.idea

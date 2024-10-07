@@ -21,7 +21,7 @@ public:
 	void PerformFly() { m_flyFunc(); }
 	void PerformQuack() { m_quackFunc(); }
 	void PerformDance() { m_danceFunc(); }
-	static void Swim() { std::cout << "Swim!" << std::endl; };
+	void Swim() { std::cout << "Swim!" << std::endl; };
 	virtual void Display() const = 0;
 
 	void SetFlyBehavior(FlyBehavior flyFunc) { m_flyFunc = std::move(flyFunc); }

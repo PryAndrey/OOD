@@ -1,0 +1,118 @@
+AddShape id1 #273036 rectangle 0 0 900 900
+AddShape id2 #787b7a rectangle 0 670 900 230
+AddShape id3 #bdc7c1 circle 60  25 3.5
+AddShape id4 #bdc7c1 circle 160 10 4.5
+AddShape id5 #bdc7c1 circle 260 50 4.5
+AddShape id6 #bdc7c1 circle 360 30 4.5
+AddShape id7 #bdc7c1 circle 460 15 3.5
+AddShape id8 #bdc7c1 circle 560 70 4.5
+AddShape id9 #bdc7c1 circle 560 30 4.5
+AddShape id10 #bdc7c1 circle 760 15 3.5
+AddShape id11 #bdc7c1 circle 860 70 4.5
+AddShape id12 #bdc7c1 circle 13  125 3.5
+AddShape id13 #bdc7c1 circle 169 125 3.5
+AddShape id14 #bdc7c1 circle 269 110 4.5
+AddShape id15 #bdc7c1 circle 369 150 4.5
+AddShape id16 #bdc7c1 circle 469 130 4.5
+AddShape id17 #bdc7c1 circle 569 115 3.5
+AddShape id18 #bdc7c1 circle 669 170 4.5
+AddShape id19 #bdc7c1 circle 569 130 4.5
+AddShape id20 #bdc7c1 circle 769 115 3.5
+AddShape id21 #bdc7c1 circle 869 170 4.5
+AddShape id22 #bdc7c1 circle 60  125 3.5
+AddShape id23 #bdc7c1 circle 190 110 4.5
+AddShape id24 #bdc7c1 circle 290 150 4.5
+AddShape id25 #bdc7c1 circle 390 130 4.5
+AddShape id26 #bdc7c1 circle 490 115 3.5
+AddShape id27 #bdc7c1 circle 590 170 4.5
+AddShape id28 #bdc7c1 circle 590 130 4.5
+AddShape id29 #bdc7c1 circle 790 115 3.5
+AddShape id30 #bdc7c1 circle 890 170 4.5
+AddShape id31 #bdc7c1 circle 13  225 3.5
+AddShape id32 #bdc7c1 circle 189 225 3.5
+AddShape id33 #bdc7c1 circle 289 210 4.5
+AddShape id34 #bdc7c1 circle 389 250 4.5
+AddShape id35 #bdc7c1 circle 489 230 4.5
+AddShape id36 #bdc7c1 circle 589 215 3.5
+AddShape id37 #bdc7c1 circle 689 270 4.5
+AddShape id38 #bdc7c1 circle 589 230 4.5
+AddShape id39 #bdc7c1 circle 789 215 3.5
+AddShape id40 #bdc7c1 circle 889 270 4.5
+AddShape id41 #bdc7c1 circle 60  325 3.5
+AddShape id42 #bdc7c1 circle 160 310 4.5
+AddShape id43 #bdc7c1 circle 260 350 4.5
+AddShape id44 #bdc7c1 circle 360 330 4.5
+AddShape id45 #bdc7c1 circle 460 315 3.5
+AddShape id46 #bdc7c1 circle 560 370 4.5
+AddShape id47 #bdc7c1 circle 560 330 4.5
+AddShape id48 #bdc7c1 circle 760 315 3.5
+AddShape id49 #bdc7c1 circle 860 370 4.5
+AddShape id50 #bdc7c1 circle 13  425 3.5
+AddShape id51 #bdc7c1 circle 169 425 3.5
+AddShape id52 #bdc7c1 circle 269 410 4.5
+AddShape id53 #bdc7c1 circle 369 450 4.5
+AddShape id54 #bdc7c1 circle 469 430 4.5
+AddShape id55 #bdc7c1 circle 569 415 3.5
+AddShape id56 #bdc7c1 circle 669 470 4.5
+AddShape id57 #bdc7c1 circle 569 430 4.5
+AddShape id58 #bdc7c1 circle 769 415 3.5
+AddShape id59 #bdc7c1 circle 869 470 4.5
+AddShape id60 #bdc7c1 circle 60  425 3.5
+AddShape id61 #bdc7c1 circle 190 410 4.5
+AddShape id62 #bdc7c1 circle 290 450 4.5
+AddShape id63 #bdc7c1 circle 390 430 4.5
+AddShape id64 #bdc7c1 circle 490 415 3.5
+AddShape id65 #bdc7c1 circle 590 470 4.5
+AddShape id66 #bdc7c1 circle 590 430 4.5
+AddShape id67 #bdc7c1 circle 790 415 3.5
+AddShape id68 #bdc7c1 circle 890 470 4.5
+AddShape id69 #bdc7c1 circle 13  525 3.5
+AddShape id70 #bdc7c1 circle 189 525 3.5
+AddShape id71 #bdc7c1 circle 289 510 4.5
+AddShape id72 #bdc7c1 circle 389 550 4.5
+AddShape id73 #bdc7c1 circle 489 530 4.5
+AddShape id74 #bdc7c1 circle 589 515 3.5
+AddShape id75 #bdc7c1 circle 689 570 4.5
+AddShape id76 #bdc7c1 circle 589 530 4.5
+AddShape id77 #bdc7c1 circle 789 515 3.5
+AddShape id78 #bdc7c1 circle 889 570 4.5
+AddShape id79 #ed7d6c circle 600 250 100
+AddShape id80 #787b7a triangle -50 700 90 430 300 700
+AddShape id81 #666b69 triangle 90 500 90 430 300 700
+AddShape id82 #666b69 triangle 35 570 90 470 250 570
+AddShape id83 #787b7a triangle 450 700 590 530 700 700
+AddShape id84 #666b69 triangle 590 600 590 530 700 700
+AddShape id85 #666b69 triangle 535 650 590 570 650 650
+AddShape id86 #787b7a triangle 500 700 800 400 1100 700
+AddShape id87 #666b69 triangle 800 700 800 400 1100 700
+AddShape id88 #666b69 triangle 670 580 800 450 1000 580
+AddShape id89 #666b69 triangle 470 900 800 500 1000 900
+AddShape id90 #787b7a triangle 50 700 300 300 600 700
+AddShape id91 #666b69 triangle 300 500 300 300 600 700
+AddShape id92 #666b69 triangle 180 600 300 400 500 600
+AddShape id93 #666b69 triangle 200 900 400 500 800 900
+AddShape id94 #c9c1b6 rectangle 0 800 900 200
+AddShape id95 #273036 triangle 50 700 100 600 150 700
+AddShape id96 #a49e99 triangle 100 700 100 600 150 700
+AddShape id97 #273036 triangle 30 770 100 650 170 770
+AddShape id98 #a49e99 triangle 100 770 100 650 170 770
+AddShape id99 #273036 triangle 10 840 100 700 190 840
+AddShape id100 #a49e99 triangle 100 840 100 700 190 840
+AddShape id101 #273036 triangle 590 680 650 580 710 680
+AddShape id102 #a49e99 triangle 650 680 650 580 710 680
+AddShape id103 #273036 triangle 570 750 650 630 730 750
+AddShape id104 #a49e99 triangle 650 750 650 630 730 750
+AddShape id105 #273036 triangle 550 820 650 680 750 820
+AddShape id106 #a49e99 triangle 650 820 650 680 750 820
+AddShape id107 #c9c1b6 triangle 250 850 450 650 650 850
+AddShape id108 #ed7d6c triangle 450 850 450 650 650 850
+AddShape id109 #ed7d6c triangle 250 850 450 650 430 850
+AddShape id110 #273036 triangle 200 800 450 650 250 850
+AddShape id111 #273036 triangle 200 800 400 640 450 650
+AddShape id112 #c9c1b6 triangle 410 840 449 670 430 850
+AddShape id113 #273036 triangle 750 680 850 530 950 680
+AddShape id114 #a49e99 triangle 850 680 850 530 950 680
+AddShape id115 #273036 triangle 720 800 850 620 980 800
+AddShape id116 #a49e99 triangle 850 800 850 620 980 800
+AddShape id117 #273036 triangle 650 950 850 720 1050 950
+AddShape id118 #a49e99 triangle 850 950 850 720 1050 950

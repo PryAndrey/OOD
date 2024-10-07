@@ -23,6 +23,7 @@ void PlayWithDuck(CDuck& duck)
 }
 
 int main() {
+	cout << "-----------------" << endl;
 	CMallardDuck mallard;
 	PlayWithDuck(mallard);
 	mallard.PerformFly();
@@ -32,6 +33,7 @@ int main() {
 	mallard.PerformFly();
 	cout << "-----------------" << endl;
 
+		cout << "-----------------" << endl;
 	CRedheadDuck redhead;
 	PlayWithDuck(redhead);
 	redhead.PerformFly();
@@ -41,6 +43,7 @@ int main() {
 	redhead.PerformFly();
 	cout << "-----------------" << endl;
 
+		cout << "-----------------" << endl;
 	CDecoyDuck decoyDuck;
 	PlayWithDuck(decoyDuck);
 	decoyDuck.PerformFly();
@@ -50,6 +53,7 @@ int main() {
 	decoyDuck.PerformFly();
 	cout << "-----------------" << endl;
 
+		cout << "-----------------" << endl;
 	CRubberDuck rubberDuck;
 	PlayWithDuck(rubberDuck);
 	rubberDuck.PerformFly();
@@ -57,6 +61,7 @@ int main() {
 	rubberDuck.PerformFly();
 	rubberDuck.SetFlyBehavior(CreateFlyNoWay());
 	rubberDuck.PerformFly();
+	cout << "-----------------" << endl;
 
 	return 0;
 }
