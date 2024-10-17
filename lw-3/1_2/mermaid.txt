@@ -1,0 +1,117 @@
+classDiagram
+    class IBeverage {
+        <<interface>>
+        + GetDescription(): string
+        + GetCost(): double
+    }
+
+    class CBeverage {
+        - m_description: string
+        + GetDescription(): string
+    }
+
+    class CCoffee {
+        + GetCost(): double
+    }
+
+    class CCappuccino {
+        - m_portionMultiplier: PortionMultiplier
+        + GetCost(): double
+    }
+
+    class CLatte {
+        - m_portionMultiplier: PortionMultiplier
+        + GetCost(): double
+    }
+
+    class CTea {
+        - m_teaType: TeaType
+        + GetCost(): double
+    }
+
+    class CMilkshake {
+        - m_portionSize: PortionSize
+        + GetCost(): double
+    }
+
+    class CCondimentDecorator {
+        - m_beverage: IBeveragePtr
+        + GetDescription(): string
+        + GetCost(): double
+        + GetCondimentDescription(): string
+        + GetCondimentCost(): double
+    }
+
+    class CCinnamon {
+        + GetCondimentDescription(): string
+        + GetCondimentCost(): double
+    }
+
+    class CLemon {
+        - m_quantity: unsigned
+        + GetCondimentDescription(): string
+        + GetCondimentCost(): double
+    }
+
+    class CIceCubes {
+        - m_quantity: unsigned
+        - m_type: IceCubeType
+        + GetCondimentDescription(): string
+        + GetCondimentCost(): double
+    }
+
+    class CLiqueur {
+        - m_liqueurType: LiqueurType
+        + GetCondimentDescription(): string
+        + GetCondimentCost(): double
+    }
+
+    class CCoconutFlakes {
+        - m_mass: unsigned
+        + GetCondimentDescription(): string
+        + GetCondimentCost(): double
+    }
+
+    class CChocolateSlice {
+        - m_quantity: unsigned
+        + GetCondimentDescription(): string
+        + GetCondimentCost(): double
+    }
+
+    class CSyrup {
+        - m_syrupType: SyrupType
+        + GetCondimentDescription(): string
+        + GetCondimentCost(): double
+    }
+
+    class CChocolateCrumbs {
+        - m_mass: unsigned
+        + GetCondimentDescription(): string
+        + GetCondimentCost(): double
+    }
+
+    class CCream {
+        + GetCondimentDescription(): string
+        + GetCondimentCost(): double
+    }
+
+    IBeverage <|-- CBeverage
+
+    CBeverage <|-- CCoffee
+    CCoffee <|-- CCappuccino
+    CCoffee <|-- CLatte
+    CBeverage <|-- CTea
+    CBeverage <|-- CMilkshake
+
+    IBeverage <|-- CCondimentDecorator
+    IBeverage --* CCondimentDecorator
+
+    CCondimentDecorator <|-- CCinnamon
+    CCondimentDecorator <|-- CLemon
+    CCondimentDecorator <|-- CIceCubes
+    CCondimentDecorator <|-- CSyrup
+    CCondimentDecorator <|-- CChocolateCrumbs
+    CCondimentDecorator <|-- CCream
+    CCondimentDecorator <|-- CLiqueur
+    CCondimentDecorator <|-- CCoconutFlakes
+    CCondimentDecorator <|-- CChocolateSlice

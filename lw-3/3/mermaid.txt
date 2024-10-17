@@ -1,0 +1,148 @@
+classDiagram
+    class IInputDataStream {
+        <<interface>>
+        +IsEOF() bool
+        +ReadByte() uint8_t
+        +ReadBlock(void* dstBuffer, std::streamsize size) std::streamsize
+        ~IInputDataStream() = default
+    }
+
+    class IOutputDataStream {
+        <<interface>>
+        +WriteByte(uint8_t data)
+        +WriteBlock(const void* srcData, std::streamsize size)
+        ~IOutputDataStream() = default
+    }
+
+    class IFileInputDataStream {
+        <<interface>>
+    }
+
+    class IFileOutputDataStream {
+        <<interface>>
+        +Close()
+    }
+
+    class IMemoryInputDataStream {
+        <<interface>>
+    }
+
+    class IMemoryOutputDataStream {
+        <<interface>>
+    }
+
+    class InputFileDataStreamDecorator {
+        +InputFileDataStreamDecorator(std::unique_ptr<IFileInputDataStream> stream)
+    }
+
+    class OutputFileDataStreamDecorator {
+        +OutputFileDataStreamDecorator(std::unique_ptr<IFileOutputDataStream> stream)
+    }
+
+    class InputMemoryDataStreamDecorator {
+        +InputMemoryDataStreamDecorator(std::unique_ptr<IMemoryInputDataStream> stream)
+    }
+
+    class OutputMemoryDataStreamDecorator {
+        +OutputMemoryDataStreamDecorator(std::unique_ptr<IMemoryOutputDataStream> stream)
+    }
+
+    class FileInputStream {
+        +FileInputStream(const std::string& fileName)
+        +IsEOF() bool
+        +ReadByte() uint8_t
+        +ReadBlock(void* dstBuffer, std::streamsize size) std::streamsize
+        ~FileInputStream()
+    }
+
+    class FileOutputStream {
+        +FileOutputStream(const std::string& fileName)
+        +WriteByte(uint8_t data)
+        +WriteBlock(const void* srcData, std::streamsize size)
+        +Close()
+        ~FileOutputStream()
+    }
+
+    class MemoryInputStream {
+        +MemoryInputStream(const std::string& data)
+        +IsEOF() bool
+        +ReadByte() uint8_t
+        +ReadBlock(void* dstBuffer, std::streamsize size) std::streamsize
+    }
+
+    class MemoryOutputStream {
+        +WriteByte(uint8_t data)
+        +WriteBlock(const void* srcData, std::streamsize size)
+    }
+
+    class EncryptOutputFileStream {
+        +EncryptOutputFileStream(std::unique_ptr<IFileOutputDataStream> stream, int key)
+        +WriteByte(uint8_t data)
+        +WriteBlock(const void* srcData, std::streamsize size)
+        +Close()
+    }
+
+    class DecryptInputFileStream {
+        +DecryptInputFileStream(std::unique_ptr<IFileInputDataStream> stream, int key)
+        +IsEOF() bool
+        +ReadByte() uint8_t
+        +ReadBlock(void* dstBuffer, std::streamsize size) std::streamsize
+    }
+
+    class CompressOutputFileStream {
+        +CompressOutputFileStream(std::unique_ptr<IFileOutputDataStream> stream)
+        +WriteByte(uint8_t data)
+        +WriteBlock(const void* srcData, std::streamsize size)
+        +Close()
+    }
+
+    class DecompressInputFileStream {
+        +DecompressInputFileStream(std::unique_ptr<IFileInputDataStream> stream)
+        +IsEOF() bool
+        +ReadByte() uint8_t
+        +ReadBlock(void* dstBuffer, std::streamsize size) std::streamsize
+    }
+    
+%% Relationships
+IInputDataStream <|.. IFileInputDataStream 
+IFileInputDataStream <|.. FileInputStream
+IFileInputDataStream <|-- InputFileDataStreamDecorator
+IFileInputDataStream --* InputFileDataStreamDecorator
+InputFileDataStreamDecorator <|-- DecryptFileInputStream
+InputFileDataStreamDecorator <|-- DecompressFileInputStream
+
+IInputDataStream <|.. IMemoryInputDataStream
+IMemoryInputDataStream <|.. MemoryInputStream
+IMemoryInputDataStream <|-- InputMemoryDataStreamDecorator
+IMemoryInputDataStream --* InputMemoryDataStreamDecorator
+InputFileDataStreamDecorator <|-- DecryptMemoryInputStream
+InputFileDataStreamDecorator <|-- DecompressMemoryInputStream
+
+IOutputDataStream <|.. IFileOutputDataStream
+IFileOutputDataStream <|.. FileOutputStream
+IFileOutputDataStream <|-- OutputFileDataStreamDecorator
+IFileOutputDataStream --* OutputFileDataStreamDecorator
+OutputFileDataStreamDecorator <|-- DecryptFileOutputStream
+OutputFileDataStreamDecorator <|-- DecompressFileOutputStream
+
+IOutputDataStream <|.. IMemoryOutputDataStream
+IMemoryOutputDataStream <|.. MemoryOutputStream
+IMemoryOutputDataStream <|-- OutputMemoryDataStreamDecorator
+IMemoryOutputDataStream --* OutputMemoryDataStreamDecorator
+OutputMemoryDataStreamDecorator <|-- DecryptMemoryOutputStream
+OutputMemoryDataStreamDecorator <|-- DecompressMemoryOutputStream
+
+
+IOutputDataStream <|.. IFileOutputDataStream
+IFileOutputDataStream <|.. FileOutputStream
+IFileOutputDataStream <|-- OutputFileDataStreamDecorator
+IFileOutputDataStream --* OutputFileDataStreamDecorator
+OutputFileDataStreamDecorator <|-- EncryptFileOutputStream
+OutputFileDataStreamDecorator <|-- CompressFileOutputStream
+
+IOutputDataStream <|.. IMemoryOutputDataStream
+IMemoryOutputDataStream <|.. MemoryOutputStream
+IMemoryOutputDataStream <|-- OutputMemoryDataStreamDecorator
+IMemoryOutputDataStream --* OutputMemoryDataStreamDecorator
+OutputMemoryDataStreamDecorator <|-- DecryptMemoryOutputStream
+OutputMemoryDataStreamDecorator <|-- DecompressMemoryOutputStream

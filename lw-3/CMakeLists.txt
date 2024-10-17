@@ -19,6 +19,6 @@ FetchContent_MakeAvailable(googletest)
 set(GTEST_ENABLE_MOCK ON CACHE BOOL "" FORCE)
 
 add_executable(3 3/main.cpp)
-#add_executable(BeverageTests12 1_2/google_test/test.cpp)
-#target_link_libraries(BeverageTests12 gtest_main gmock)
-
+set_target_properties(3 PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/../../3"
+        )

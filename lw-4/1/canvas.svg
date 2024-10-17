@@ -1,0 +1,120 @@
+<svg width="900" height="900" xmlns="http://www.w3.org/2000/svg">
+<polygon points="0,0 900,0 900,0 900,900 900,900 0,900 0,900 0,0 " fill="#273036" stroke="#273036" />
+<polygon points="0,670 900,670 900,670 900,900 900,900 0,900 0,900 0,670 " fill="#787b7a" stroke="#787b7a" />
+<ellipse cx="60" cy="25" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="160" cy="10" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="260" cy="50" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="360" cy="30" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="460" cy="15" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="560" cy="70" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="560" cy="30" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="760" cy="15" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="860" cy="70" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="13" cy="125" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="169" cy="125" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="269" cy="110" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="369" cy="150" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="469" cy="130" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="569" cy="115" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="669" cy="170" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="569" cy="130" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="769" cy="115" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="869" cy="170" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="60" cy="125" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="190" cy="110" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="290" cy="150" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="390" cy="130" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="490" cy="115" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="590" cy="170" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="590" cy="130" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="790" cy="115" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="890" cy="170" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="13" cy="225" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="189" cy="225" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="289" cy="210" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="389" cy="250" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="489" cy="230" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="589" cy="215" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="689" cy="270" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="589" cy="230" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="789" cy="215" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="889" cy="270" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="60" cy="325" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="160" cy="310" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="260" cy="350" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="360" cy="330" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="460" cy="315" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="560" cy="370" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="560" cy="330" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="760" cy="315" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="860" cy="370" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="13" cy="425" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="169" cy="425" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="269" cy="410" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="369" cy="450" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="469" cy="430" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="569" cy="415" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="669" cy="470" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="569" cy="430" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="769" cy="415" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="869" cy="470" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="60" cy="425" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="190" cy="410" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="290" cy="450" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="390" cy="430" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="490" cy="415" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="590" cy="470" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="590" cy="430" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="790" cy="415" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="890" cy="470" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="13" cy="525" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="189" cy="525" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="289" cy="510" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="389" cy="550" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="489" cy="530" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="589" cy="515" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="689" cy="570" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="589" cy="530" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="789" cy="515" rx="3.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="889" cy="570" rx="4.5" ry="4" fill="#bdc7c1" />
+<ellipse cx="600" cy="250" rx="100" ry="90" fill="#ed7d6c" />
+<polygon points="-50,700 90,430 90,430 300,700 300,700 -50,700 " fill="#787b7a" stroke="#787b7a" />
+<polygon points="90,500 90,430 90,430 300,700 300,700 90,500 " fill="#666b69" stroke="#666b69" />
+<polygon points="35,570 90,470 90,470 250,570 250,570 35,570 " fill="#666b69" stroke="#666b69" />
+<polygon points="450,700 590,530 590,530 700,700 700,700 450,700 " fill="#787b7a" stroke="#787b7a" />
+<polygon points="590,600 590,530 590,530 700,700 700,700 590,600 " fill="#666b69" stroke="#666b69" />
+<polygon points="535,650 590,570 590,570 650,650 650,650 535,650 " fill="#666b69" stroke="#666b69" />
+<polygon points="500,700 800,400 800,400 1100,700 1100,700 500,700 " fill="#787b7a" stroke="#787b7a" />
+<polygon points="800,700 800,400 800,400 1100,700 1100,700 800,700 " fill="#666b69" stroke="#666b69" />
+<polygon points="670,580 800,450 800,450 1000,580 1000,580 670,580 " fill="#666b69" stroke="#666b69" />
+<polygon points="470,900 800,500 800,500 1000,900 1000,900 470,900 " fill="#666b69" stroke="#666b69" />
+<polygon points="50,700 300,300 300,300 600,700 600,700 50,700 " fill="#787b7a" stroke="#787b7a" />
+<polygon points="300,500 300,300 300,300 600,700 600,700 300,500 " fill="#666b69" stroke="#666b69" />
+<polygon points="180,600 300,400 300,400 500,600 500,600 180,600 " fill="#666b69" stroke="#666b69" />
+<polygon points="200,900 400,500 400,500 800,900 800,900 200,900 " fill="#666b69" stroke="#666b69" />
+<polygon points="0,800 900,800 900,800 900,1000 900,1000 0,1000 0,1000 0,800 " fill="#c9c1b6" stroke="#c9c1b6" />
+<polygon points="50,700 100,600 100,600 150,700 150,700 50,700 " fill="#273036" stroke="#273036" />
+<polygon points="100,700 100,600 100,600 150,700 150,700 100,700 " fill="#a49e99" stroke="#a49e99" />
+<polygon points="30,770 100,650 100,650 170,770 170,770 30,770 " fill="#273036" stroke="#273036" />
+<polygon points="100,770 100,650 100,650 170,770 170,770 100,770 " fill="#a49e99" stroke="#a49e99" />
+<polygon points="10,840 100,700 100,700 190,840 190,840 10,840 " fill="#273036" stroke="#273036" />
+<polygon points="100,840 100,700 100,700 190,840 190,840 100,840 " fill="#a49e99" stroke="#a49e99" />
+<polygon points="590,680 650,580 650,580 710,680 710,680 590,680 " fill="#273036" stroke="#273036" />
+<polygon points="650,680 650,580 650,580 710,680 710,680 650,680 " fill="#a49e99" stroke="#a49e99" />
+<polygon points="570,750 650,630 650,630 730,750 730,750 570,750 " fill="#273036" stroke="#273036" />
+<polygon points="650,750 650,630 650,630 730,750 730,750 650,750 " fill="#a49e99" stroke="#a49e99" />
+<polygon points="550,820 650,680 650,680 750,820 750,820 550,820 " fill="#273036" stroke="#273036" />
+<polygon points="650,820 650,680 650,680 750,820 750,820 650,820 " fill="#a49e99" stroke="#a49e99" />
+<polygon points="250,850 450,650 450,650 650,850 650,850 250,850 " fill="#c9c1b6" stroke="#c9c1b6" />
+<polygon points="450,850 450,650 450,650 650,850 650,850 450,850 " fill="#ed7d6c" stroke="#ed7d6c" />
+<polygon points="250,850 450,650 450,650 430,850 430,850 250,850 " fill="#ed7d6c" stroke="#ed7d6c" />
+<polygon points="200,800 450,650 450,650 250,850 250,850 200,800 " fill="#273036" stroke="#273036" />
+<polygon points="200,800 400,640 400,640 450,650 450,650 200,800 " fill="#273036" stroke="#273036" />
+<polygon points="410,840 449,670 449,670 430,850 430,850 410,840 " fill="#c9c1b6" stroke="#c9c1b6" />
+<polygon points="750,680 850,530 850,530 950,680 950,680 750,680 " fill="#273036" stroke="#273036" />
+<polygon points="850,680 850,530 850,530 950,680 950,680 850,680 " fill="#a49e99" stroke="#a49e99" />
+<polygon points="720,800 850,620 850,620 980,800 980,800 720,800 " fill="#273036" stroke="#273036" />
+<polygon points="850,800 850,620 850,620 980,800 980,800 850,800 " fill="#a49e99" stroke="#a49e99" />
+<polygon points="650,950 850,720 850,720 1050,950 1050,950 650,950 " fill="#273036" stroke="#273036" />
+<polygon points="850,950 850,720 850,720 1050,950 1050,950 850,950 " fill="#a49e99" stroke="#a49e99" />
+</svg>
