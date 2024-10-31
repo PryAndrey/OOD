@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<p> &lt;script&gt;alert(1234);&lt;/script&gt;</p>
+</body>
+</html>

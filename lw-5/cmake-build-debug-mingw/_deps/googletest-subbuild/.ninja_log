@@ -1,0 +1,21 @@
+# ninja log v6
+2222	2266	7512785899651244	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build	a27410780e50ca76
+2	48	7512785877481202	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir	af0f5f6f4411561
+2083	2129	7512785898281297	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update	a2db4b99b1935b23
+2083	2129	7512785898281297	C:/Users/ANDREY/Documents/GitHub/OOD/lw-5/cmake-build-debug-mingw/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update	a2db4b99b1935b23
+2	48	7512785877481202	C:/Users/ANDREY/Documents/GitHub/OOD/lw-5/cmake-build-debug-mingw/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir	af0f5f6f4411561
+48	2082	7512785897821221	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download	9cbec7df75c902c5
+2129	2175	7512785898751234	C:/Users/ANDREY/Documents/GitHub/OOD/lw-5/cmake-build-debug-mingw/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch	ec6614cff91ddda6
+48	2082	7512785897821221	C:/Users/ANDREY/Documents/GitHub/OOD/lw-5/cmake-build-debug-mingw/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download	9cbec7df75c902c5
+2129	2175	7512785898751234	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch	ec6614cff91ddda6
+2222	2266	7512785899651244	C:/Users/ANDREY/Documents/GitHub/OOD/lw-5/cmake-build-debug-mingw/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build	a27410780e50ca76
+2175	2221	7512785899211212	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure	92951ac45d1803ac
+2357	2421	7512785901211226	CMakeFiles/googletest-populate-complete	dca86e07e92f8139
+2175	2221	7512785899211212	C:/Users/ANDREY/Documents/GitHub/OOD/lw-5/cmake-build-debug-mingw/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure	92951ac45d1803ac
+2266	2311	7512785900111185	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install	c57c76d8f1ccb6b0
+2266	2311	7512785900111185	C:/Users/ANDREY/Documents/GitHub/OOD/lw-5/cmake-build-debug-mingw/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install	c57c76d8f1ccb6b0
+2312	2357	7512785900571248	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test	36f63c83fd91f6fa
+2357	2421	7512785901211226	C:/Users/ANDREY/Documents/GitHub/OOD/lw-5/cmake-build-debug-mingw/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done	dca86e07e92f8139
+2312	2357	7512785900571248	C:/Users/ANDREY/Documents/GitHub/OOD/lw-5/cmake-build-debug-mingw/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test	36f63c83fd91f6fa
+2357	2421	7512785901211226	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done	dca86e07e92f8139
+2357	2421	7512785901211226	C:/Users/ANDREY/Documents/GitHub/OOD/lw-5/cmake-build-debug-mingw/_deps/googletest-subbuild/CMakeFiles/googletest-populate-complete	dca86e07e92f8139

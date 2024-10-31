@@ -1,0 +1,21 @@
+# ninja log v6
+3453	3497	7520211591727663	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build	9da8de25cab36fb1
+3	57	7520211557322244	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir	ba803334f1d315c7
+3322	3366	7520211590422980	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update	b77336304f6ba1bb
+3	57	7520211557322244	C:/Users/ANDREY/Documents/GitHub/OOD/lw-6/cmake-build-debug-mingw/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir	ba803334f1d315c7
+58	3322	7520211589980090	C:/Users/ANDREY/Documents/GitHub/OOD/lw-6/cmake-build-debug-mingw/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download	b4b9a357fc4b600e
+58	3322	7520211589980090	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download	b4b9a357fc4b600e
+3322	3366	7520211590422980	C:/Users/ANDREY/Documents/GitHub/OOD/lw-6/cmake-build-debug-mingw/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update	b77336304f6ba1bb
+3366	3410	7520211590848236	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch	93c2ef4e2cda9196
+3366	3410	7520211590848236	C:/Users/ANDREY/Documents/GitHub/OOD/lw-6/cmake-build-debug-mingw/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch	93c2ef4e2cda9196
+3410	3453	7520211591287638	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure	7a292f148dcb020
+3583	3641	7520211593173605	CMakeFiles/googletest-populate-complete	90cca7938c965eb1
+3410	3453	7520211591287638	C:/Users/ANDREY/Documents/GitHub/OOD/lw-6/cmake-build-debug-mingw/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure	7a292f148dcb020
+3453	3497	7520211591727663	C:/Users/ANDREY/Documents/GitHub/OOD/lw-6/cmake-build-debug-mingw/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build	9da8de25cab36fb1
+3497	3540	7520211592157952	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install	3d84f3642f6683f7
+3497	3540	7520211592157952	C:/Users/ANDREY/Documents/GitHub/OOD/lw-6/cmake-build-debug-mingw/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install	3d84f3642f6683f7
+3540	3582	7520211592583709	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test	d15ec0c43ec82af6
+3540	3582	7520211592583709	C:/Users/ANDREY/Documents/GitHub/OOD/lw-6/cmake-build-debug-mingw/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test	d15ec0c43ec82af6
+3583	3641	7520211593173605	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done	90cca7938c965eb1
+3583	3641	7520211593173605	C:/Users/ANDREY/Documents/GitHub/OOD/lw-6/cmake-build-debug-mingw/_deps/googletest-subbuild/CMakeFiles/googletest-populate-complete	90cca7938c965eb1
+3583	3641	7520211593173605	C:/Users/ANDREY/Documents/GitHub/OOD/lw-6/cmake-build-debug-mingw/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done	90cca7938c965eb1
