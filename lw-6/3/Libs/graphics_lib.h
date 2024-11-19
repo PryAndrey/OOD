@@ -26,7 +26,7 @@ class Canvas : public ICanvas
 public:
 	void SetColor(uint32_t rgbColor) override
 	{
-		cout << "SetColor (" << rgbColor << ")" << endl;
+		cout << "SetColor (#" << std::hex << std::uppercase << rgbColor << std::dec << ")" << endl;
 	}
 	void MoveTo(int x, int y) override
 	{
@@ -37,4 +37,4 @@ public:
 		cout << "LineTo (" << x << ", " << y << ")" << endl;
 	}
 };
-}
+} // namespace graphics_lib

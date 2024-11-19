@@ -19,10 +19,23 @@ public:
 
 	void SetColor(uint32_t rgbColor) override
 	{
-		float a = ((rgbColor >> 24) & 0xFF) / 255.0f;
-		float r = ((rgbColor >> 16) & 0xFF) / 255.0f;
-		float g = ((rgbColor >> 8) & 0xFF) / 255.0f;
-		float b = (rgbColor & 0xFF) / 255.0f;
+		// todo как задавать нулевую прозрачность
+		// todo убрать значение a по умолчанию - done
+		float r, g, b, a;
+		if (rgbColor > 0xFFFFFF)
+		{
+			r = static_cast<float>((rgbColor >> 24) & 0xFF) / 255.0f;
+			g = static_cast<float>((rgbColor >> 16) & 0xFF) / 255.0f;
+			b = static_cast<float>((rgbColor >> 8) & 0xFF) / 255.0f;
+			a = static_cast<float>(rgbColor & 0xFF) / 255.0f;
+		}
+		else
+		{
+			r = static_cast<float>((rgbColor >> 16) & 0xFF) / 255.0f;
+			g = static_cast<float>((rgbColor >> 8) & 0xFF) / 255.0f;
+			b = static_cast<float>(rgbColor & 0xFF) / 255.0f;
+			a = 0xFF / 255.0f;
+		}
 
 		m_color = { r, g, b, a };
 	}

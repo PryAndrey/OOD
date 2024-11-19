@@ -17,11 +17,19 @@ public:
 
 	void MoveTo(int x, int y) override
 	{
+		if (!m_drawing)
+		{
+			BeginDraw();
+		}
 		m_start = { x, y };
 	}
 
 	void LineTo(int x, int y) override
 	{
+		if (!m_drawing)
+		{
+			BeginDraw();
+		}
 		const modern_graphics_lib::Point end(x, y);
 
 		DrawLine(m_start, end);
@@ -32,4 +40,4 @@ public:
 private:
 	modern_graphics_lib::Point m_start;
 };
-}
+} // namespace app

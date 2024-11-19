@@ -74,6 +74,8 @@ public:
 
 private:
 	ostream& m_out;
+
+protected:
 	bool m_drawing = false;
 };
 }

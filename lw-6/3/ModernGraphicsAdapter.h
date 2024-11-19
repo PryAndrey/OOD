@@ -17,11 +17,20 @@ public:
 
 	void SetColor(uint32_t rgbColor) override
 	{
-		float a = ((rgbColor >> 24) & 0xFF) / 255.0f;
-		float r = ((rgbColor >> 16) & 0xFF) / 255.0f;
-		float g = ((rgbColor >> 8) & 0xFF) / 255.0f;
-		float b = (rgbColor & 0xFF) / 255.0f;
-
+		float r, g, b, a = 0xFF;
+		if (rgbColor > 0xFFFFFF)
+		{//static_cast to float
+			r = ((rgbColor >> 24) & 0xFF) / 255.0f;
+			g = ((rgbColor >> 16) & 0xFF) / 255.0f;
+			b = ((rgbColor >> 8) & 0xFF) / 255.0f;
+			a = (rgbColor & 0xFF) / 255.0f;
+		}
+		else
+		{
+			r = ((rgbColor >> 16) & 0xFF) / 255.0f;
+			g = ((rgbColor >> 8) & 0xFF) / 255.0f;
+			b = (rgbColor & 0xFF) / 255.0f;
+		}
 		m_color = { r, g, b, a };
 	}
 
@@ -44,4 +53,4 @@ private:
 	modern_graphics_lib::Point m_start;
 	modern_graphics_lib::ModernGraphicsRenderer& m_renderer;
 };
-}
+} // namespace app

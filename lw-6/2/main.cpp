@@ -35,11 +35,9 @@ void PaintPictureOnModernGraphicsRenderer()
 	app::ModernGraphicsClassAdapter modernGraphicsAdapter(cout);
 	shape_drawing_lib::CCanvasPainter painter(modernGraphicsAdapter);
 
-	modernGraphicsAdapter.BeginDraw();
-
+	// todo Подумать над внесением begin draw в адаптер - done
+	// todo добавить тест с нулевой позицией - done
 	PaintPicture(painter);
-
-	modernGraphicsAdapter.EndDraw();
 }
 }
 

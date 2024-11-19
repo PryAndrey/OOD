@@ -37,7 +37,8 @@ void PaintPictureOnModernGraphicsRenderer()
 	shape_drawing_lib::CCanvasPainter painter(modernGraphicsAdapter);
 
 	renderer.BeginDraw();
-
+	// todo Подумать над внесением begin draw в адаптер
+	// todo добавить тест с нулевой позицией
 	PaintPicture(painter);
 
 	renderer.EndDraw();

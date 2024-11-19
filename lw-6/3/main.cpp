@@ -15,8 +15,8 @@ void PaintPicture(shape_drawing_lib::CanvasPainter& painter)
 {
 	using namespace shape_drawing_lib;
 
-	const Triangle triangle({ 10, 15 }, { 100, 200 }, { 150, 250 }, 0x123456);
-	const Rectangle rectangle({ 30, 40 }, 18, 24, 0x123456);
+	const Triangle triangle({ 10, 15 }, { 100, 200 }, { 150, 250 }, 0xFF3401);
+	const Rectangle rectangle({ 30, 40 }, 18, 24, 0xFF3456AA);
 
 	painter.Draw(triangle);
 	painter.Draw(rectangle);
