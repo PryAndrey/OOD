@@ -1,221 +1,269 @@
 classDiagram
-    class Client {
-        + HandleCommand(istream inputData, ICanvas canvas)
-        - SlideService m_slideService
+class Client {
++Client(SlideService &slideService)
++HandleCommand(std::istream &inputData, gfx::ICanvas &canvas, double width, double height)
+-SlideService &m_slideService
+}
+
+    class SlideService {
+        +SlideService(IShapeFactory &shapeFactory)
+        +CreateSlide(std::istream &inputData, double width, double height)
+        +DrawSlide(gfx::ICanvas &canvas)
+        -IShapeFactory &m_shapeFactory
+        -std::unique_ptr<ISlide> m_currentSlide
     }
 
-    namespace CanvasNamespace {
-        class ICanvas {
-            + SetWidth(double width)*
-            + SetHeight(double width)*
-            + SetLineColor(RGBAColor color)*
-            + BeginFill(RGBAColor color)*
-            + EndFill()*
-            + DrawLine(double fromX, double fromY, double toX, double toY)*
-            + DrawEllipse(double centerX, double centerY, double radiusX, double radiusY)*
-        }
-
-        class PNGCanvas {
-            + SetWidth(double width)
-            + SetHeight(double width)
-            + SetLineColor(RGBAColor color)
-            + BeginFill(RGBAColor color)
-            + EndFill()
-            + DrawLine(double fromX, double fromY, double toX, double toY)
-            + DrawEllipse(double centerX, double centerY, double radiusX, double radiusY)
-        }
+    class IShapeFactory {
+        <<interface>>
+        +CreateShape(const std::string &description) : std::shared_ptr<IShape>
     }
 
-    namespace SlideNamespace {
-        class SlideService {
-            + CreateSlide(istream inputData) ISlide
-            + DrawSlide(ISlide slide)
-        }
-
-        class ISlide {
-            + GetWidth()*
-            + GetHeight()*
-            + GetShapes() IShapes*
-        }
-
-        class Slide {
-            + GetWidth()
-            + GetHeight()
-            + GetShapes() IShapes
-
-            - IShapes m_shapes
-        }
-    }    
-
-    namespace ShapeFactoryNamespace {
-        class IShapeFactory {
-            + CreateShape(string description) IShape
-        }
-
-        class ShapeFactory {
-            + CreateShape(string description) IShape
-        }
+    class ShapeFactory {
+        +CreateShape(const std::string &description) : std::shared_ptr<IShape>
     }
 
-    namespace StyleNamespace {
-        class IStyles {
-            + InsertStyle(IStyle & style, size_t position = std::numeric_limits<size_t>::max())*
-            + RemoveStyleAtIndex(size_t index) *
-        }
-
-        class IGroupStyle {
-
-        }
-
-        class IStyle {
-            + IsEnabled() optional<bool>*
-            + Enable(bool enable)*
-            + GetColor() optional<RGBAColor>*
-            + SetColor(RGBAColor color)*
-        }
-
-        class Style {
-            + IsEnabled() optional<bool>
-            + Enable(bool enable)
-            + GetColor() optional<RGBAColor>
-            + SetColor(RGBAColor color)
-        }
-
-        class GroupStyle {
-            + IsEnabled() optional<bool>
-            + Enable(bool enable)
-            + GetColor() optional<RGBAColor>
-            + SetColor(RGBAColor color)
-
-            - bool m_enabled
-            - RGBAColor m_color
-        }
+    class ISlide {
+        <<interface>>
+        +GetWidth() : double
+        +GetHeight() : double
+        +GetShapeAtIndex(size_t index) : std::shared_ptr<IShape>
+        +InsertShape(const std::shared_ptr<IShape> &shape, size_t index)
+        +RemoveShapeAtIndex(size_t index)
     }
 
-    namespace ShapeNamespace {
-        class RectD {
-            + T left
-            + T top
-            + T width
-            + T height
-        }
+    class Slide {
+        +Slide(double width, double height, std::shared_ptr<GroupShape> shapes)
+        +GetWidth() : double
+        +GetHeight() : double
+        +InsertShape(const std::shared_ptr<IShape> &shape, size_t index)
+        +RemoveShapeAtIndex(size_t index)
+        +Draw(gfx::ICanvas &canvas)
+        -double m_width
+        -double m_height
+        -std::shared_ptr<GroupShape> m_shapes
+        -RGBAColor m_background
+    }
 
-        class IDrawable {
-            + Draw(ICanvas canvas)
-        }
+    class IShape {
+        <<interface>>
+        +GetFrame() : RectD
+        +SetFrame(const RectD &rect)
+        +GetOutlineStyle() : std::shared_ptr<ILineStyle>
+        +GetFillStyle() : std::shared_ptr<IFillStyle>
+    }
 
-        class IShape {
-            + GetFrame() RectD*
-            + SetFrame(const RectD & rect)*
-            + GetOutlineStyle() IStyle*
-            + GetFillStyle() IStyle*
-        }
+    class Shape {
+        +Shape(const RectD &frame, std::shared_ptr<ILineStyle> outlineStyle, std::shared_ptr<IFillStyle> fillStyle)
+        +GetFrame() : RectD
+        +SetFrame(const RectD &rect)
+        +GetOutlineStyle() : std::shared_ptr<ILineStyle>
+        +GetFillStyle() : std::shared_ptr<IFillStyle>
+        -RectD m_frame
+        -std::shared_ptr<ILineStyle> m_outlineStyle
+        -std::shared_ptr<IFillStyle> m_fillStyle
+    }
 
-        class Shape {
-            + GetFrame() RectD*
-            + SetFrame(RectD rect)*
-            + GetOutlineStyle() IStyle*
-            + GetFillStyle() IStyle*
-            + GetGroup() IGroupShape*
-        }
+    class IGroupShape {
+        <<interface>>
+        +GetShapesCount() : size_t
+        +InsertShape(const std::shared_ptr<IShape> &shape, size_t position)
+        +GetShapeAtIndex(size_t index) : std::shared_ptr<IShape>
+        +RemoveShapeAtIndex(size_t index)
+    }
 
-        class IShapes {
-            + GetShapesCount() size_t*
-            + GetShapeAtIndex(size_t index)Shape*
-            + AddShape(Shape shape, size_t position)*
-            + RemoveShape(size_t index)*
-        }
+    class GroupShape {
+        +InsertShape(const std::shared_ptr<IShape> &shape, size_t position)
+        +GetShapeAtIndex(size_t index) : std::shared_ptr<IShape>
+        +RemoveShapeAtIndex(size_t index)
+        +GetFrame() : RectD
+        +SetFrame(const RectD &rect)
+        +Draw(gfx::ICanvas &canvas)
+        -std::vector<std::shared_ptr<IShape>> m_shapes
+        -std::shared_ptr<GroupLineStyle> m_outlineStyle
+        -std::shared_ptr<GroupFillStyle> m_fillStyle
+    }
 
-        class IGroupShape {
+    class ILineStyle {
+        <<interface>>
+        +GetColor() : std::optional<RGBAColor>
+        +SetColor(RGBAColor color)
+        +GetWidth() : double
+        +SetWidth(double width)
+    }
 
-        }
+    class SimpleLineStyle {
+        +SimpleLineStyle(std::optional<RGBAColor> color, std::optional<double> width)
+        +GetColor() : std::optional<RGBAColor>
+        +SetColor(RGBAColor color)
+        +GetWidth() : double
+        +SetWidth(double width)
+        -std::optional<RGBAColor> m_color
+        -double m_width
+    }
 
-        class GroupShape {
-            + GetFrame() RectD
-            + SetFrame(const RectD & rect)
-            + GetOutlineStyle() IStyle
-            + GetFillStyle() IStyle
-            + GetShapesCount() size_t
-            + GetShapeAtIndex(size_t index) Shape
-            + AddShape(Shape shape, size_t position)
-            + RemoveShape(size_t index)*
-        }
+    class GroupLineStyle {
+        +GroupLineStyle(std::unique_ptr<IStyleEnumerator<ILineStyle>> enumerator)
+        +GetColor() : std::optional<RGBAColor>
+        +SetColor(RGBAColor color)
+        +GetWidth() : double
+        +SetWidth(double width)
+        -std::unique_ptr<IStyleEnumerator<ILineStyle>> m_enumerator
+    }
 
-        class Shape {
-            - RGBAColor m_color
+    class IFillStyle {
+        <<interface>>
+        +GetColor() : std::optional<RGBAColor>
+        +SetColor(RGBAColor color)
+    }
 
-            + Draw(ICanvas canvas)
-            + GetColor() Color 
-        }
+    class SimpleFillStyle {
+        +SimpleFillStyle(std::optional<RGBAColor> color)
+        +GetColor() : std::optional<RGBAColor>
+        +SetColor(RGBAColor color)
+        -std::optional<RGBAColor> m_color
+    }
 
-        class Rectangle {
-            + string type = "rectangle"$
-            + Draw(ICanvas canvas)
-        }
+    class GroupFillStyle {
+        +GroupFillStyle(std::unique_ptr<IStyleEnumerator<IFillStyle>> enumerator)
+        +GetColor() : std::optional<RGBAColor>
+        +SetColor(RGBAColor color)
+        -std::unique_ptr<IStyleEnumerator<IFillStyle>> m_enumerator
+    }
 
-        class Ellipse {
-            + string type = "ellipse"$
-            + Draw(ICanvas canvas)
-        }
+    class LineStyleEnumerator {
+        +LineStyleEnumerator(std::vector<std::shared_ptr<IShape>> &items)
+        +EnumerateAll(std::function<void(std::shared_ptr<ILineStyle>)> callback)
+    }
 
-        class Triangle {
-            + string type = "triangle"$
-            + Draw(ICanvas canvas, Color color)
-        }
+    class FillStyleEnumerator {
+        +FillStyleEnumerator(std::vector<std::shared_ptr<IShape>> &items)
+        +EnumerateAll(std::function<void(std::shared_ptr<IFillStyle>)> callback)
+    }
+
+    class RectD {
+        +double left
+        +double top
+        +double width
+        +double height
+    }
+
+    class IStyle {
+        <<interface>>
+        +IsEnabled() : std::optional<bool>
+        +Enable(bool enable)
+        +GetColor() : std::optional<RGBAColor>
+        +SetColor(RGBAColor color)
+        ~IStyle() = default
+    }
+
+    class Style {
+        +IsEnabled() : std::optional<bool> override
+        +Enable(bool enable) override
+        ~Style() override = default
+        -std::optional<bool> m_enabled
+    }
+
+    class IStyleEnumerator {
+        <<interface>>
+        +~IStyleEnumerator()
+        +EnumerateAll(std::function<void(std::shared_ptr<T>)>)
+    }
+
+    class LineStyleEnumerator {
+        +LineStyleEnumerator(T &items)
+        +EnumerateAll(std::function<void(std::shared_ptr<ILineStyle>)> callback) override
+        -T &m_items
+    }
+
+    class FillStyleEnumerator {
+        +FillStyleEnumerator(T &items)
+        +EnumerateAll(std::function<void(std::shared_ptr<IFillStyle>)> callback) override
+        -T &m_items
+    }
+    class IDrawable {
+        +Draw(gfx::ICanvas &canvas) const
+        ~IDrawable() = default
+    }
+class ICanvas {
+<<interface>>
++SetLineColor(uint32_t color)
++SetFillColor(uint32_t color)
++SetLineWidth(double width)
++DrawLine(double x1, double y1, double x2, double y2)
++BeginFill(uint32_t color)
++EndFill()
++DrawPolygon(const std::vector<std::pair<double, double>> &vertices)
++DrawEllipse(double cx, double cy, double rx, double ry)
+~ICanvas() = default
+}
+
+    class SVGCanvas {
+        +SVGCanvas(unsigned int width = 900, unsigned int height = 900)
+        +DrawEllipse(double cx, double cy, double rx, double ry) override
+        +SetLineColor(uint32_t color) override
+        +SetFillColor(uint32_t color) override
+        +SetLineWidth(double width) override
+        +DrawLine(double x1, double y1, double x2, double y2) override
+        +BeginFill(uint32_t color) override
+        +EndFill() override
+        +DrawPolygon(const std::vector<std::pair<double, double>> &vertices) override
+        +SaveToFile(const std::string &filename)
+        ~SVGCanvas() override = default
+        -bool m_beginFill
+        -gfx::Color m_currentLineColor
+        -gfx::Color m_currentFillColor
+        -std::vector<std::string> m_buff
+        -double m_lineWidth
+        -std::stringstream m_file
+    }
+
+    class Rectangle {
+        +constexpr static const char* type = "rectangle"
+        +Draw(gfx::ICanvas &canvas) const final
+    }
+
+    class Ellipse {
+        +constexpr static const char* type = "ellipse"
+        +Draw(gfx::ICanvas &canvas) const final
+    }
+
+    class Triangle {
+        +constexpr static const char* type = "triangle"
+        +Draw(gfx::ICanvas &canvas) const final
     }
 
     Client o-- SlideService
     ICanvas <.. Client : "Use"
-
     SlideService o-- IShapeFactory
     SlideService *-- ISlide
-
-    ICanvas <|.. PNGCanvas
-    ICanvas <.. IDrawable : "Use"
-    ICanvas <.. SlideService : "Use"
-    ICanvas <.. Slide : "Use"
-    ICanvas <.. GroupShape : "Use"
-    ICanvas <.. Rectangle : "Use"
-    ICanvas <.. Ellipse : "Use"
-    ICanvas <.. Triangle : "Use"
-
+    ICanvas <|.. SVGCanvas
     IDrawable <|.. ISlide
+    IDrawable <|.. IShape
     ISlide <|.. Slide
-    IShapes <.. ISlide : "Use"
     Slide o-- GroupShape
-
+    Slide <.. IShape
     IShapeFactory <|.. ShapeFactory
-    IShape <.. IShapeFactory : "Create"
-    Style <.. IShapeFactory : "Create"
-    RectD <.. IShapeFactory : "Create"
-
-    IDrawable <|.. Shape
-
     IShape <|.. Shape
-
-    Shape <|.. IGroupShape
-    IShapes <|.. IGroupShape
+    IShape <|.. IGroupShape
     IGroupShape <|.. GroupShape
-    GroupShape o-- Shape
-    GroupShape *-- IGroupStyle
-
+    GroupShape <|-- IShape
+    LineStyleEnumerator <.. GroupShape : "Use"
+    FillStyleEnumerator <.. GroupShape : "Use"
     IStyle <|.. Style
-    IStyle <|.. GroupStyle
-    IStyle <|.. IGroupStyle
-    IStyles <|.. IGroupStyle
-    IGroupStyle <|.. GroupStyle
-
+    Style <|.. IFillStyle
+    Style <|.. ILineStyle
+    ILineStyle <|.. SimpleLineStyle
+    IFillStyle <|.. SimpleFillStyle
+    ILineStyle <|.. GroupLineStyle
+    IFillStyle <|.. GroupFillStyle
+    IStyleEnumerator <|.. LineStyleEnumerator
+    IStyleEnumerator <|.. FillStyleEnumerator
+    IStyleEnumerator <|.. GroupLineStyle : "Use"
+    IStyleEnumerator <|.. GroupFillStyle : "Use"
     IStyle o-- Shape
     RectD o-- Shape
+    ILineStyle o-- Shape
+    IFillStyle o-- Shape
     Shape <|.. Rectangle
     Shape <|.. Ellipse
     Shape <|.. Triangle
-
-    RectD <.. ShapeFactory : "Use"
-    RectD o-- GroupShape
-    RectD o-- Rectangle
-    RectD o-- Ellipse
-    RectD o-- Triangle
-    IStyle o-- Rectangle
-    IStyle o-- Ellipse
-    IStyle o-- Triangle

@@ -16,7 +16,7 @@ public:
 	void CreateSlide(std::istream& inputData, double width, double height)
 	{
 		std::string line;
-		auto firstGroup = std::make_shared<GroupShape>();
+		std::shared_ptr<GroupShape> firstGroup = std::make_shared<GroupShape>(); // Для этого используем enable_shared_from_this
 		std::vector<std::shared_ptr<GroupShape>> groups;
 		groups.push_back(firstGroup);
 
@@ -35,7 +35,7 @@ public:
 			groups.back()->InsertShape(shape, groups.back()->GetShapesCount());
 		}
 
-		m_currentSlide = std::make_unique<Slide>(width, height, firstGroup);
+		m_currentSlide = std::make_unique<Slide>(width, height, std::move(firstGroup));
 	}
 
 	void DrawSlide(gfx::ICanvas& canvas)
@@ -85,7 +85,7 @@ public:
 			const auto rect = ReadRect(iss);
 			if (!groups.empty())
 			{
-				groups.back()->SetFrame(rect);
+				groups.back()->GetShapeAtIndex(groups.back()->GetShapesCount()-1)->SetFrame(rect);
 			}
 			return true;
 		}
@@ -98,31 +98,32 @@ public:
 			{
 				return false;
 			}
-			if (commandType == "setLineStyle" )
+			if (commandType == "setLineStyle")
 			{
 				if (iss >> lineWidth)
 				{
 					if (!groups.empty())
 					{
-						auto& lineStyle = groups.back().get()->GetOutlineStyle();
-						lineStyle.SetWidth(lineWidth);
-						lineStyle.SetColor(color.value());
+						std::shared_ptr<ILineStyle> lineStyle = groups.back().get()->GetOutlineStyle();
+						lineStyle->SetWidth(lineWidth);
+						lineStyle->SetColor(color.value());
 					}
 					return true;
 				}
 
 				if (!groups.empty())
 				{
-					auto& lineStyle = groups.back().get()->GetOutlineStyle();
-					lineStyle.SetColor(color.value());
+					std::shared_ptr<ILineStyle> lineStyle = groups.back().get()->GetOutlineStyle();
+					lineStyle->SetColor(color.value());
 				}
+				return true;
 			}
-			if (commandType == "setFillColor" )
+			if (commandType == "setFillColor")
 			{
 				if (!groups.empty())
 				{
-					auto& fillStyle = groups.back().get()->GetFillStyle();
-					fillStyle.SetColor(color.value());
+					std::shared_ptr<IFillStyle> fillStyle = groups.back().get()->GetFillStyle();
+					fillStyle->SetColor(color.value());
 				}
 			}
 			return true;
@@ -166,5 +167,6 @@ private:
 		{
 			return std::nullopt;
 		}
+		return std::nullopt;
 	}
 };

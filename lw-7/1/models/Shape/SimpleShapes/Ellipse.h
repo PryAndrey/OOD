@@ -1,6 +1,8 @@
 #pragma once
 
 #include "../IShape.h"
+#include "../Styles/FillStyle/SimpleFillStyle.h"
+#include "../Styles/LineStyle/SimpleLineStyle.h"
 #include "Shape.h"
 
 class Ellipse : public Shape
@@ -9,26 +11,26 @@ public:
 	constexpr static const char* type = "ellipse";
 
 	Ellipse(const RectD& frame,
-		std::unique_ptr<LineStyle> outlineStyle,
-		std::unique_ptr<FillStyle> fillStyle)
+		std::shared_ptr<ILineStyle> outlineStyle,
+		std::shared_ptr<IFillStyle> fillStyle)
 		: Shape(frame, std::move(outlineStyle), std::move(fillStyle))
 	{
 	}
 
 	void Draw(gfx::ICanvas& canvas) const override
 	{
-		const LineStyle& outlineStyle = GetOutlineStyle();
-		const FillStyle& fillStyle = GetFillStyle();
+		std::shared_ptr<const ILineStyle> outlineStyle = GetOutlineStyle();
+		std::shared_ptr<const IFillStyle> fillStyle = GetFillStyle();
 
-		if (fillStyle.IsEnabled() && fillStyle.GetColor().has_value())
+		if (fillStyle->IsEnabled() && fillStyle->GetColor().has_value())
 		{
-			canvas.BeginFill(fillStyle.GetColor().value());
+			canvas.BeginFill(fillStyle->GetColor().value());
 		}
 
-		canvas.SetLineWidth(outlineStyle.GetWidth());
-		if (outlineStyle.IsEnabled() && outlineStyle.GetColor().has_value())
+		canvas.SetLineWidth(outlineStyle->GetWidth());
+		if (outlineStyle->IsEnabled() && outlineStyle->GetColor().has_value())
 		{
-			canvas.SetLineColor(outlineStyle.GetColor().value());
+			canvas.SetLineColor(outlineStyle->GetColor().value());
 		}
 		else
 		{
@@ -42,7 +44,7 @@ public:
 		const double ry = frame.height / 2;
 		canvas.DrawEllipse(cx, cy, rx, ry);
 
-		if (fillStyle.IsEnabled() && fillStyle.GetColor().has_value())
+		if (fillStyle->IsEnabled() && fillStyle->GetColor().has_value())
 		{
 			canvas.EndFill();
 		}

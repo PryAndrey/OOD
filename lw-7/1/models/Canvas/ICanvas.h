@@ -21,7 +21,7 @@ struct Color
 	[[nodiscard]] std::string ToString() const
 	{
 		std::stringstream ss;
-		ss << std::hex << std::setfill('F') << std::setw(6) << ToNum();
+		ss << std::hex << std::setfill('0') << std::setw(8) << ToNum();
 		return "#" + ss.str();
 	}
 };
@@ -37,13 +37,17 @@ Color ToColor(uint32_t hexNum)
 	return result;
 }
 
-Color ToColor(const std::string& color)
+Color ToColor(std::string color)
 {
 	Color result{};
 
-	if (color.size() != 7 || color[0] != '#')
+	if ((color.size() != 7 && color.size() != 9) || color[0] != '#')
 	{
 		throw std::logic_error("Invalid color format");
+	}
+	if (color.size() == 7)
+	{
+		color += "FF";
 	}
 	std::string tempColor = color;
 	tempColor.erase(tempColor.begin());

@@ -14,3 +14,22 @@ public:
 
 	virtual ~IStyle() = default;
 };
+
+class Style : public IStyle
+{
+public:
+	[[nodiscard]] std::optional<bool> IsEnabled() const override
+	{
+		return m_enabled;
+	}
+
+	void Enable(bool enable) override
+	{
+		m_enabled = enable;
+	}
+
+	~Style() override = default;
+
+protected:
+	std::optional<bool> m_enabled = std::nullopt;
+};

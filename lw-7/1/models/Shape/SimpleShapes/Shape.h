@@ -1,13 +1,15 @@
 #pragma once
 
+#include <utility>
+
 #include "../IShape.h"
 
 class Shape : public IShape
 {
 public:
 	Shape(const RectD& frame,
-		std::unique_ptr<LineStyle> outlineStyle,
-		std::unique_ptr<FillStyle> fillStyle)
+		std::shared_ptr<ILineStyle> outlineStyle,
+		std::shared_ptr<IFillStyle> fillStyle)
 		: m_frame(frame)
 		, m_outlineStyle(std::move(outlineStyle))
 		, m_fillStyle(std::move(fillStyle))
@@ -24,28 +26,28 @@ public:
 		m_frame = rect;
 	}
 
-	LineStyle& GetOutlineStyle() override
+	std::shared_ptr<ILineStyle> GetOutlineStyle() override
 	{
-		return *m_outlineStyle;
+		return m_outlineStyle;
 	}
 
-	[[nodiscard]] const LineStyle& GetOutlineStyle() const override
+	[[nodiscard]] std::shared_ptr<const ILineStyle> GetOutlineStyle() const override
 	{
-		return *m_outlineStyle;
+		return m_outlineStyle;
 	}
 
-	FillStyle& GetFillStyle() override
+	std::shared_ptr<IFillStyle> GetFillStyle() override
 	{
-		return *m_fillStyle;
+		return m_fillStyle;
 	}
 
-	[[nodiscard]] const FillStyle& GetFillStyle() const override
+	[[nodiscard]] std::shared_ptr<const IFillStyle> GetFillStyle() const override
 	{
-		return *m_fillStyle;
+		return m_fillStyle;
 	}
 
 private:
 	RectD m_frame{};
-	std::unique_ptr<LineStyle> m_outlineStyle;
-	std::unique_ptr<FillStyle> m_fillStyle;
+	std::shared_ptr<ILineStyle> m_outlineStyle;
+	std::shared_ptr<IFillStyle> m_fillStyle;
 };

@@ -24,10 +24,17 @@ public:
 		return m_height;
 	}
 
-	[[nodiscard]] IShapes& GetShapes() override
+	std::shared_ptr<IShape> GetShapeAtIndex(size_t index) override
 	{
-		return *m_shapes;
-	}
+	};
+
+	void InsertShape(const std::shared_ptr<IShape>& shape, size_t index) override
+	{
+	};
+
+	void RemoveShapeAtIndex(size_t index) override
+	{
+	};
 
 	void Draw(gfx::ICanvas& canvas) const override
 	{
@@ -35,6 +42,7 @@ public:
 		canvas.BeginFill(m_background);
 		canvas.DrawPolygon(background);
 		canvas.EndFill();
+
 		m_shapes->Draw(canvas);
 	}
 

@@ -2,7 +2,6 @@
 #include "../SimpleShapes/Ellipse.h"
 #include "../SimpleShapes/Rectangle.h"
 #include "../SimpleShapes/Triangle.h"
-#include "../Style/Style.h"
 #include "IShapeFactory.h"
 
 class ShapeFactory : public IShapeFactory
@@ -17,18 +16,19 @@ public:
 
 		auto outlineStyle = ReadLineStyle(iss);
 		auto fillStyle = ReadFillStyle(iss);
+		const auto rect = ReadRect(iss);
 
 		if (shapeType == Triangle::type)
 		{
-			return ShapeFactory::CreateTriangle(iss, std::move(outlineStyle), std::move(fillStyle));
+			return ShapeFactory::CreateTriangle(std::move(outlineStyle), std::move(fillStyle), rect);
 		}
 		else if (shapeType == Ellipse::type)
 		{
-			return ShapeFactory::CreateEllipse(iss, std::move(outlineStyle), std::move(fillStyle));
+			return ShapeFactory::CreateEllipse(std::move(outlineStyle), std::move(fillStyle), rect);
 		}
 		else if (shapeType == Rectangle::type)
 		{
-			return ShapeFactory::CreateRectangle(iss, std::move(outlineStyle), std::move(fillStyle));
+			return ShapeFactory::CreateRectangle(std::move(outlineStyle), std::move(fillStyle), rect);
 		}
 
 		throw std::invalid_argument("Unknown shape type");
@@ -36,36 +36,30 @@ public:
 
 private:
 	static std::shared_ptr<Triangle> CreateTriangle(
-		std::istringstream& iss,
-		std::unique_ptr<LineStyle> outlineStyle,
-		std::unique_ptr<FillStyle> fillStyle)
+		std::shared_ptr<SimpleLineStyle> outlineStyle,
+		std::shared_ptr<SimpleFillStyle> fillStyle,
+		RectD rect)
 	{
-		const auto rect = ReadRect(iss);
-
 		return std::make_unique<Triangle>(rect, std::move(outlineStyle), std::move(fillStyle));
 	}
 
 	static std::shared_ptr<Ellipse> CreateEllipse(
-		std::istringstream& iss,
-		std::unique_ptr<LineStyle> outlineStyle,
-		std::unique_ptr<FillStyle> fillStyle)
+		std::shared_ptr<SimpleLineStyle> outlineStyle,
+		std::shared_ptr<SimpleFillStyle> fillStyle,
+		RectD rect)
 	{
-		const auto rect = ReadRect(iss);
-
 		return std::make_unique<Ellipse>(rect, std::move(outlineStyle), std::move(fillStyle));
 	}
 
 	static std::shared_ptr<Rectangle> CreateRectangle(
-		std::istringstream& iss,
-		std::unique_ptr<LineStyle> outlineStyle,
-		std::unique_ptr<FillStyle> fillStyle)
+		std::shared_ptr<SimpleLineStyle> outlineStyle,
+		std::shared_ptr<SimpleFillStyle> fillStyle,
+		RectD rect)
 	{
-		const auto rect = ReadRect(iss);
-
 		return std::make_unique<Rectangle>(rect, std::move(outlineStyle), std::move(fillStyle));
 	}
 
-	static std::unique_ptr<LineStyle> ReadLineStyle(std::istringstream& iss)
+	static std::shared_ptr<SimpleLineStyle> ReadLineStyle(std::istringstream& iss)
 	{
 		std::string colorStr;
 		double lineWidth;
@@ -81,13 +75,18 @@ private:
 		{
 			std::cout << e.what() << std::endl;
 		}
-		auto style = std::make_unique<LineStyle>((iss >> lineWidth) ? lineWidth : 0, color);
+		if ((iss >> lineWidth))
+		{
+			auto style = std::make_shared<SimpleLineStyle>(color, lineWidth);
+			style->Enable(true);
+			return style;
+		}
+		auto style = std::make_shared<SimpleLineStyle>(color, 0);
 		style->Enable(true);
-
 		return style;
 	}
 
-	static std::unique_ptr<FillStyle> ReadFillStyle(std::istringstream& iss)
+	static std::shared_ptr<SimpleFillStyle> ReadFillStyle(std::istringstream& iss)
 	{
 		std::string colorStr;
 		std::optional<RGBAColor> color = std::nullopt;
@@ -103,7 +102,7 @@ private:
 			std::cout << e.what() << std::endl;
 		}
 
-		auto style = std::make_unique<FillStyle>(color);
+		auto style = std::make_shared<SimpleFillStyle>(color);
 		style->Enable(true);
 
 		return style;

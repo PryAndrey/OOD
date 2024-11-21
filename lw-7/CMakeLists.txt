@@ -29,23 +29,27 @@ set(SOURCE_FILES
         1/models/Shape/SimpleShapes/Rectangle.h
         1/models/Shape/SimpleShapes/Ellipse.h
         1/models/Shape/SimpleShapes/Shape.h
-        1/models/Shape/Style/IStyle.h
-        1/models/Shape/Style/Style.h
+        1/models/Shape/Styles/IStyle.h
         1/models/Shape/IShape.h
         1/models/IDrawable.h
         1/models/Shape/GroupShape.h
-        1/models/Shape/IShapes.h
+        1/models/Shape/IGroupShape.h
         1/models/Slide/ISlide.h
         1/models/Slide/Slide.h
         1/models/Slide/SlideService.h
         1/models/CoreTypes.h
-        1/models/Shape/Style/GroupStyle.h
+        1/models/Shape/Styles/LineStyle/GroupLineStyle.h
         1/models/Canvas/SVGCanvas.h
+        1/models/Shape/Styles/LineStyle/ILineStyle.h
+        1/models/Shape/Styles/LineStyle/SimpleLineStyle.h
+        1/models/Shape/Styles/FillStyle/SimpleFillStyle.h
+        1/models/Shape/Styles/FillStyle/IFillStyle.h
+        1/models/Shape/Styles/FillStyle/GroupFillStyle.h
+        1/models/Shape/Styles/StyleEnumerator.h
+
 )
 
-set(TEST_SOURCE_FILES
-        test/test.cpp
-)
+set(TEST_SOURCE_FILES test/test.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 

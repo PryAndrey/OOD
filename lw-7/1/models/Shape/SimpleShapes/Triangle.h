@@ -9,26 +9,26 @@ public:
 	constexpr static const char* type = "triangle";
 
 	Triangle(const RectD& frame,
-		std::unique_ptr<LineStyle> outlineStyle,
-		std::unique_ptr<FillStyle> fillStyle)
+		std::shared_ptr<ILineStyle> outlineStyle,
+		std::shared_ptr<IFillStyle> fillStyle)
 		: Shape(frame, std::move(outlineStyle), std::move(fillStyle))
 	{
 	}
 
 	void Draw(gfx::ICanvas& canvas) const final
 	{
-		const LineStyle& outlineStyle = GetOutlineStyle();
-		const FillStyle& fillStyle = GetFillStyle();
+		std::shared_ptr<const ILineStyle> outlineStyle = GetOutlineStyle();
+		std::shared_ptr<const IFillStyle> fillStyle = GetFillStyle();
 
-		if (fillStyle.IsEnabled() && fillStyle.GetColor().has_value())
+		if (fillStyle->IsEnabled() && fillStyle->GetColor().has_value())
 		{
-			canvas.BeginFill(fillStyle.GetColor().value());
+			canvas.BeginFill(fillStyle->GetColor().value());
 		}
 
-		canvas.SetLineWidth(outlineStyle.GetWidth());
-		if (outlineStyle.IsEnabled() && outlineStyle.GetColor().has_value())
+		canvas.SetLineWidth(outlineStyle->GetWidth());
+		if (outlineStyle->IsEnabled() && outlineStyle->GetColor().has_value())
 		{
-			canvas.SetLineColor(outlineStyle.GetColor().value());
+			canvas.SetLineColor(outlineStyle->GetColor().value());
 		}
 		else
 		{
@@ -45,7 +45,7 @@ public:
 
 		canvas.DrawPolygon(vertices);
 
-		if (fillStyle.IsEnabled() && fillStyle.GetColor().has_value())
+		if (fillStyle->IsEnabled() && fillStyle->GetColor().has_value())
 		{
 			canvas.EndFill();
 		}
